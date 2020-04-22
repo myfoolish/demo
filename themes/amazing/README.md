@@ -1,7 +1,3 @@
-**此仓库不在单独维护，请移步至纯主题仓库[hexo-theme-amazing](https://github.com/removeif/hexo-theme-amazing)**
-
-<br/>
-
 **预览图**
 + 首页1
 ![](https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2020/20200208141757.png)
@@ -14,12 +10,14 @@
 
 ### 写在前面
 
-博客源码包括两个主题[icarus](http://github.com/ppoffice/hexo-theme-icarus)和[next](https://github.com/iissnan/hexo-theme-next)，在主题基础之上参照各网友博客，以及自己的一些想法做出的一些修改以及增加部分新元素。  
+博客源码在主题[icarus](http://github.com/ppoffice/hexo-theme-icarus)基础之上参照各网友博客，以及自己的一些想法做出的一些修改以及增加部分新元素。除了以下配置，其余配置请到[icarus官网查看](http://github.com/ppoffice/hexo-theme-icarus)。
 因为修改了原作者源码，有什么问题请先联系我，不要去麻烦原作者了，能自己解决的问题就不要麻烦别人了，每个人的时间都很宝贵。  
 膜拜和感谢所有模块的原作者,orz👻,辛苦了。  
 
-**本仓库为博客主题完整仓库，纯主题仓库请移步为[hexo-theme-amazing](https://github.com/removeif/hexo-theme-amazing)**
+**本仓库为纯主题仓库，博客主题完整仓库请移步为[hexo-theme-icarus-removeif](https://github.com/removeif/hexo-theme-icarus-removeif)**
 
+
+**增加adsense分支，此分支信息流中加入adsense广告，如[本博客](https://removeif.github.io/)adsense每个地方的使用方式，具体请移步[branch](https://github.com/removeif/hexo-theme-amazing/tree/adsense)**
 
 线上博客：[欢迎围观](https://removeif.github.io/)，[博客源码Live Demo](https://removeif.github.io/removeif-demo/)
 
@@ -53,30 +51,33 @@ v11.1.0
 192:hexo-theme-icarus-removeif xx$ npm -v
 6.4.1
 ```  
-注意文章模板文件中的配置 /scaffolds/post.md
-```text
----
-thumbnail:
-title: {{ title }}
-date: {{ date }}
-tags:
-categories: 
-toc: true
-recommend: 1
-keywords: categories-java
-uniqueId: {{ date }}/{{ title }}.html
----
-```
-`uniqueId` 文章唯一标识，用于评论issue的id
-#### 克隆博客代码到本地
+#### 在博客目录下clone主题代码
 ```jshelllanguage
-git clone https://github.com/removeif/hexo-theme-icarus-removeif.git
+git clone https://github.com/removeif/hexo-theme-amazing.git /themes/amazing
 ```
 #### 开始部分配置：
-**敲黑板！！！！首先全局以及主题中的`_config.yml`配置成自己的对应参数。**
+**敲黑板！！！！首先全局以及主题中的`_config.yml`配置成自己的对应参数。**  
+
+把主题中ex_pages文件夹中的文件复制到博客相应目录下面。包含了文章模板、关于页、相册页、友链、留言板、音乐、影音、碎碎念页面（各个页面的.md文件可自定义修改内容），可以自己选择性需要哪些页面复制哪些过去，同时对应配置主题中`_config.yml`需要哪些页面进行修改，如下配置
+```yaml
+navbar:
+    # Naviagtion menu items
+    menu:
+        首页: /
+        归档: /archives
+        分类: /categories
+        标签: /tags
+        律法: /tags/法律/
+        影音: /media
+        相册: /album
+        友链: /friend
+        碎碎念: /self-talking
+        留言: /message
+        关于: /about
+```
 #### 1.热门推荐，最新评论：
 **仅针对gitalk评论有效，如果配置完后显示[本博客](https://removeif.github.io/)相关评论、推荐，请详细阅读这一条**  
-热门推荐，最新评论，文章评论数关联的js文件路径：themes/icarus/source/js/comment-issue-data.js  
+热门推荐，最新评论，文章评论数关联的js文件路径：themes/amazing/source/js/comment-issue-data.js  
 以下引号里的地址改成自己对应的博客评论的issues的仓库相关的值。repoIssuesUrl改两个值（removeif和blog_comment改成自己对应的）
 ```yaml
 // 评论issues仓库 by.removeif https://removeif.github.io/
@@ -84,6 +85,8 @@ var repoIssuesUrl = "https://api.github.com/repos/removeif/blog_comment/issues";
 // 评论issues仓库 clientId、clientSecret怎么申请自行搜索，关于这暴露两个参数的安全问题，查看 https://removeif.github.io/2019/09/19/博客源码分享.html#1-热门推荐，最新评论：
 var clientId = "46a9f3481b46ea0129d8";
 var clientSecret = "79c7c9cb847e141757d7864453bcbf89f0655b24";
+// 管理员名称,评论时添加 [博主] 后缀 removeif 改成自己的用户名
+var ADMIN_NAME = "removeif";
 ```
 github api 详情可以参照[官方api说明](https://developer.github.com/v3/#rate-limiting)  
 关于配置暴露client_id和client_secret安全性问题，gitalk作者有[解释](https://github.com/gitalk/gitalk/issues/150)  
@@ -109,27 +112,17 @@ comment:
 + 目前的最新评论有1分钟的本地缓存，评论后可能1分钟后才能看见最新评论，出于性能优化，每次请求接口处理还是挺耗时，comment-issue-data.js中可以自己去掉。  
 
 #### 2.友链数据文件：
-文件路径：themes/icarus/source/js/friend.js  
+文件路径：themes/amazing/source/js/friend.js  
 相应格式增加自己需要的数据。
-友链数据中，"valid": 0 代表异常网站，"valid": 1或者不填此字段代表正常网站，可以自己配置；"stopTime": "2019.09.09"代表异常时访问的时间
-{
-"date": "2019.09.09",
-"stopTime": "2019.09.09",
-"src": "https://cdn.jsdelivr.net/gh/removeif/removeif.github.io/images/tuzi.jpg",
-"name": "@辣椒の酱",
-"desc": "后端开发，技术分享。",
-"url": "https://removeif.github.io/",
-"valid": 0
-}
 
 #### 3.影音数据文件：
 文件路径： 
-音乐：themes/icarus/source/json_data/music.json  
-视频：themes/icarus/source/json_data/video.json    
+音乐：themes/amazing/source/json_data/music.json  
+视频：themes/amazing/source/json_data/video.json    
 相应格式增加自己需要的数据。    
         
 #### 4.关于页面时间轴记录数据文件：
-文件路径：themes/icarus/source/json_data/record.json   
+文件路径：themes/amazing/source/json_data/record.json   
 相应格式增加自己需要的数据。
 
 #### 5.看板娘配置
@@ -217,7 +210,8 @@ wrong_hash_message: 不好意思，信息无法验证！
 ```
 注：**加密文章不会出现在最新文章列表widget中，也不会出现在文章中推荐列表中，首页列表中需要设置top: -1 让它排在最后比较合理一些。**
 #### 10.碎碎念的使用
-在github中，创建碎碎念issue，并且打上对应的label（`eg:666666`）对应配置中为id，填写到source/self-talking/index.md文件中如下对应位置，其余配置也要改成自己的，如clientID等。
+在github中，创建碎碎念issue，并且打上对应的label（`eg:Gitalk,666666`）如下图，此处666666对应下面配置代码中的id，填写到source/self-talking/index.md文件中如下对应位置，其余配置也要改成自己的，如clientID等。
+![](https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2020/20200310182707.png)
 ```js
 <script>
     var gitalk = new Gitalk({
@@ -236,7 +230,7 @@ wrong_hash_message: 不好意思，信息无法验证！
 如下：
 ![碎碎念](https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2020/20200119181607.png)
 #### 11.本博客样式（透明无界）
-只需要放开themes/icarus/source/css/base.styl文件中以下样式代码注释即可，默认是注释的没启用
+只需要放开themes/amazing/source/css/base.styl文件中以下样式代码注释即可，默认是注释的没启用
 ```css 
 //=================本博客使用样式   start
 
@@ -293,16 +287,9 @@ widget中的归档和分类和标签精简了，数据多时很丑，改为了�
 ![](https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2020/20200211151129.png)
 
 原来已有博客文章的迁移，只需要把原来对应的文章放到source/_posts里即可。然后去对应文章下面创建评论issue。  
-
-#### 左下角网站运行时间更改
-文件是：hexo-theme-icarus-removeif/themes/icarus/source/js/statistics.js，对应如下，修改成自己网站开始运行的时间就行
-```js
-    var n = new Date("11/11/2018 00:00:00");
-```
-
 #### 以上配置好后
 ```yaml
-$ npm install #安装依赖包（只需要执行一次）
+$ npm install #安装依赖包（只需要执行一次）可直接把本文最后的json文件复制到博客下面的依赖文件package.json后在执行此命令
 $ hexo clean #清除缓存
 $ hexo g #编译 
 $ hexo s #启动服务 
@@ -367,3 +354,49 @@ This project is licensed under the MIT License - see the [LICENSE](https://githu
 ![](https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2019/20190919222030.png)
 + 关于
 ![](https://cdn.jsdelivr.net/gh/removeif/blog_image/img/2019/20190919222131.png)
+
+### 提供hexo博客目录下依赖包 package.json
+```json
+{
+  "name": "hexo-site",
+  "version": "3.0.0",
+  "private": true,
+  "scripts": {
+    "build": "hexo generate",
+    "clean": "hexo clean",
+    "deploy": "hexo deploy",
+    "server": "hexo server"
+  },
+  "hexo": {
+    "version": "4.2.0"
+  },
+  "dependencies": {
+    "ajv": "^6.10.2",
+    "bulma-stylus": "0.8.0",
+    "deepmerge": "^4.2.2",
+    "hexo": "^4.2.0",
+    "hexo-blog-encrypt": "^3.0.3",
+    "hexo-deployer-git": "^2.1.0",
+    "hexo-generator-archive": "^1.0.0",
+    "hexo-generator-category": "^1.0.0",
+    "hexo-generator-feed": "^2.2.0",
+    "hexo-generator-index": "^1.0.0",
+    "hexo-generator-tag": "^1.0.0",
+    "hexo-log": "^1.0.0",
+    "hexo-pagination": "^1.0.0",
+    "hexo-renderer-ejs": "^1.0.0",
+    "hexo-renderer-inferno": "^0.1.1",
+    "hexo-renderer-marked": "^2.0.0",
+    "hexo-renderer-stylus": "^1.1.0",
+    "hexo-server": "^1.0.0",
+    "hexo-util": "^1.8.0",
+    "inferno": "^7.3.3",
+    "inferno-create-element": "^7.3.3",
+    "js-yaml": "^3.13.1",
+    "moment": "^2.22.2",
+    "save": "^2.4.0",
+    "semver": ">=5.0.0"
+  }
+}
+
+```
