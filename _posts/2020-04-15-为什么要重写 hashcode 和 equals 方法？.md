@@ -1,7 +1,8 @@
 ---
 title: 为什么要重写 hashcode 和 equals 方法？
-description: 我在面试Java初级开发的时候，经常会问：你有没有重写过hashcode方法？不少候选人直接说没写过。我就想，或许真的没写过，于是就再通过一个问题确认：你在用HashMap的时候，键（Key）部分，有没有放过自定义对象？而这个时候，候选人说放过，于是两个问题的回答就自相矛盾了。
-categories: - develop
+description: 我在面试Java初级开发的时候，经常会问：你有没有重写过hashcode方法？
+categories:
+ - develop
 tags: Java
 ---
 
