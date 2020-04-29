@@ -217,12 +217,12 @@ font:
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 #social:
   #LinkLabel: Link
-  GitHub: https://github.com/MyFoolish || github
-  Twitter: https://twitter.com/_liuxiaowei || twitter
+  GitHub: https://github.com/MyFoolish
+  Twitter: https://twitter.com/_liuxiaowei
   #微博: http://weibo.com/your-user-name
-  #微博: http://weibo.com/5376217854
+  微博: http://weibo.com/5376217854
   #豆瓣: http://douban.com/people/your-user-name
-  知乎: http://www.zhihu.com/people/_liuxiaowei || zhihu
+  知乎: http://www.zhihu.com/people/_liuxiaowei
 
 
 # Social Links Icons
@@ -234,11 +234,9 @@ social_icons:
   enable: true
   # Icon Mappings.
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
-  #GitHub: github
-  #Twitter: twitter
-  #Weibo: weibo
-  icons_only: false
-  transition: false
+  GitHub: github
+  Twitter: twitter
+  Weibo: weibo
 
 
 # Sidebar Avatar
@@ -274,8 +272,8 @@ sidebar:
   #  - always  expand for all pages automatically
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggle.
-  #display: post
-  display: always
+  display: post
+  #display: always
   #display: hide
   #display: remove
 
@@ -337,20 +335,13 @@ post_wordcount:
   #qcode: /path/to/your/wechatqcode ex. /uploads/wechat-qcode.jpg
   #description: ex. subscribe to my blog by scanning my public wechat account
 
-#打赏
-#reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
-#wechatpay: /path/to/wechat-reward-image
-#alipay: /path/to/alipay-reward-image
-
-# Declare license on posts 版权说明
+# Declare license on posts
 post_copyright:
   enable: false
   license: CC BY-NC-SA 3.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
 
 
-mobile_layout_economy: false
-android_chrome_color: "#222"
 
 # ---------------------------------------------------------------
 # Misc Theme Settings
@@ -450,51 +441,6 @@ changyan:
 # You can get your uid from https://livere.com/insight/myCode (General web site)
 #livere_uid: your uid
 
-# Valine. 评论插件
-valine:
-  enable: true
-  appid:   # your leancloud application appid
-  appkey:  # your leancloud application appkey
-  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
-  verify: false # Verification code
-  placeholder: Just go go # comment box placeholder
-  avatar: mm # gravatar style
-  guest_info: nick,mail,link # custom comment header
-  pageSize: 10 # pagination size
-  
-  gitment:
-  enable: false
-  mint: true # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway
-  count: true # Show comments count in post meta area
-  lazy: false # Comments lazy loading with a button
-  cleanly: false # Hide 'Powered by ...' on footer, and more
-  language: # Force language, or auto switch by theme
-  github_user: # MUST HAVE, Your Github ID
-  github_repo: # MUST HAVE, The repo you use to store Gitment comments
-  client_id: # MUST HAVE, Github client id for the Gitment
-  client_secret: # EITHER this or proxy_gateway, Github access secret token for the Gitment
-  proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
-  redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
-  
-  # NeedMoreShare2
-needmoreshare2:
-  enable: false
-  postbottom:
-    enable: false
-    options:
-      iconStyle: box
-      boxForm: horizontal
-      position: bottomCenter
-      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
-  float:
-    enable: false
-    options:
-      iconStyle: box
-      boxForm: horizontal
-      position: middleRight
-      networks: Weibo,Wechat,Douban,QQZone,Twitter,Facebook
-
-
 # Support for gitalk comments system.
 gitalk:
   enable: false
@@ -588,13 +534,6 @@ leancloud_visitors:
   enable: false
   app_id: #<app_id>
   app_key: #<app_key>
-  
- firestore:
-  enable: false
-  collection: articles #required, a string collection name to access firestore database
-  apiKey: #required
-  projectId: #required
-  bluebird: false #enable this if you want to include bluebird 3.5.1(core version) Promise polyfill
 
 # Show PV/UV of the website/page with busuanzi.
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
@@ -653,7 +592,7 @@ algolia_search:
     hits_stats: "${hits} results found in ${time} ms"
 
 
-# Local search  ######search.xml 文件
+# Local search
 local_search:
   enable: true
   # if auto, trigger search by changing input
@@ -666,23 +605,6 @@ local_search:
 # Usage: {% exturl text url "title" %}
 # Alias: {% extlink text url "title" %}
 exturl: false
-
-note:
-  style: simple
-  icons: false
-  border_radius: 3
-  light_bg_offset: 0
-
-# Label tag.
-label: true
-
-# Tabs tag.
-tabs:
-  enable: true
-  transition:
-    tabs: false
-    labels: true
-  border_radius: 0
 
 
 #! ---------------------------------------------------------------
@@ -820,5 +742,9 @@ css: source/assets/css
 js: source/assets/js
 images: source/assets/images
 
+#reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+#wechatpay: /path/to/wechat-reward-image
+#alipay: /path/to/alipay-reward-image
+
 # Theme version
-version: 5.2.1
+version: 5.1.1
