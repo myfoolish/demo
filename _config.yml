@@ -86,7 +86,7 @@ keywords: "Xiaowei's Blog"
 rss:
 
 # Specify the date when the site was setup
-since: 2020
+since: 2019
 
 # icon between year and author @Footer
 authoricon: heart
@@ -215,7 +215,7 @@ social:
   GitHub: https://github.com/MyFoolish
   Twitter: https://twitter.com/_liuxiaowei
   #微博: http://weibo.com/your-user-name
-  #微博: http://weibo.com/5376217854
+  微博: http://weibo.com/5376217854
   #豆瓣: http://douban.com/people/your-user-name
   知乎: http://www.zhihu.com/people/_liuxiaowei
 
@@ -231,7 +231,8 @@ social_icons:
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
   Twitter: twitter
-  zhihu: zhihu
+  微博: weibo
+  知乎: zhihu
 
 
 # Sidebar Avatar
@@ -492,7 +493,7 @@ duoshuo_info:
 # Facebook SDK Support.
 # https://github.com/iissnan/hexo-theme-next/pull/410
 facebook_sdk:
-  enable: false
+  enable: true
   app_id:       #<app_id>
   fb_admin:     #<user_id>
   like_button:  #true
@@ -502,7 +503,7 @@ facebook_sdk:
 # This plugin depends on Facebook SDK.
 # If facebook_sdk.enable is false, Facebook comments plugin is unavailable.
 facebook_comments_plugin:
-  enable: false
+  enable: true
   num_of_posts: 10  # min posts num is 1
   width: 100%       # default width is 550px
   scheme: light     # default scheme is light (light or dark)
