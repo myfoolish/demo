@@ -12,7 +12,6 @@ author: 坏脾气先生L
 language: zh-Hans
 date_format: '%Y-%m-%d'
 
-# Put your favicon.ico into `assets/` directory.
 favicon: /source/assets/images/favicon.ico
 
 # URL
@@ -128,6 +127,10 @@ menu:
   #commonweal: /source/404.html
   #search: /search/
 
+# 网站置顶链接
+top:
+  links: 
+    '🐤SpringCloud分布式项目脚手架': 'https://github.com/TyCoding/cloud-template'
 
 # Enable/Disable menu icons.
 # Icon Mapping:
@@ -166,7 +169,7 @@ scheme: Muse
 # - Introduce in 5.0.1
 # ---------------------------------------------------------------
 font:
-  enable: true
+  enable: false
 
   # Uri of fonts host. E.g. //fonts.googleapis.com (Default)
   host:
@@ -213,12 +216,12 @@ font:
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 social:
   #LinkLabel: Link
-  GitHub: https://github.com/MyFoolish
-  Twitter: https://twitter.com/_liuxiaowei
+  GitHub: https://github.com/MyFoolish || github
+  Twitter: https://twitter.com/_liuxiaowei || twitter
   #微博: http://weibo.com/your-user-name
   #微博: http://weibo.com/5376217854
   #豆瓣: http://douban.com/people/your-user-name
-  知乎: http://www.zhihu.com/people/_liuxiaowei
+  知乎: http://www.zhihu.com/people/_liuxiaowei || zhihu
 
 
 # Social Links Icons
@@ -230,22 +233,21 @@ social_icons:
   enable: true
   # Icon Mappings.
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
-  GitHub: github
-  Twitter: twitter
+  #GitHub: github
+  #Twitter: twitter
+  icons_only: false
+  transition: false
 
 
 # Sidebar Avatar
-# in directory: /source/assets/images/avatar.gif
 avatar: /source/assets/images/avatar.gif
 
 
 # Table Of Contents in the Sidebar
 toc:
   enable: true
-
   # Automatically add list number to toc.
   number: true
-
   # If true, all words will placed on next lines if header width longer then sidebar width.
   wrap: false
 
@@ -281,7 +283,7 @@ sidebar:
 
   # Scroll percent label in b2t button
   scrollpercent: false
-
+  onmobile: false
 
 # Blog rolls
 #links_title: Links
@@ -331,7 +333,7 @@ post_wordcount:
   #description: ex. subscribe to my blog by scanning my public wechat account
 
 #打赏
-#reward_comment: 坚持原创技术分享，您的支持将鼓励我继续创作！
+#reward_comment: 如果你觉得这篇文章帮助到了你，你可以鼓励一下 
 #wechatpay: /path/to/wechat-reward-image
 #alipay: /path/to/alipay-reward-image
 
@@ -341,7 +343,8 @@ post_copyright:
   license: CC BY-NC-SA 3.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
 
-
+mobile_layout_economy: false
+android_chrome_color: "#222"
 
 # ---------------------------------------------------------------
 # Misc Theme Settings
@@ -440,6 +443,18 @@ changyan:
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
 #livere_uid: your uid
+
+# Valine. 评论插件
+valine:
+  enable: true
+  appid:   # your leancloud application appid
+  appkey:  # your leancloud application appkey
+  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
+  verify: false # Verification code
+  placeholder: Just go go # comment box placeholder
+  avatar: mm # gravatar style
+  guest_info: nick,mail,link # custom comment header
+  pageSize: 10 # pagination size
 
 # Support for gitalk comments system.
 gitalk:
