@@ -127,10 +127,6 @@ menu:
   #commonweal: /source/404.html
   #search: /search/
 
-# 网站置顶链接
-top:
-  links: 
-    '🐤SpringCloud分布式项目脚手架': 'https://github.com/TyCoding/cloud-template'
 
 # Enable/Disable menu icons.
 # Icon Mapping:
@@ -235,7 +231,7 @@ social_icons:
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
   Twitter: twitter
-  知乎: zhihu
+  zhihu: zhihu
 
 
 # Sidebar Avatar
@@ -268,8 +264,8 @@ sidebar:
   #  - always  expand for all pages automatically
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggle.
-  #display: post
-  display: always
+  display: post
+  #display: always
   #display: hide
   #display: remove
 
@@ -282,7 +278,7 @@ sidebar:
 
   # Scroll percent label in b2t button
   scrollpercent: false
-  onmobile: false
+
 
 # Blog rolls
 #links_title: Links
@@ -342,8 +338,6 @@ post_copyright:
   license: CC BY-NC-SA 3.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
 
-mobile_layout_economy: false
-android_chrome_color: "#222"
 
 # ---------------------------------------------------------------
 # Misc Theme Settings
@@ -548,7 +542,7 @@ firestore:
 # Get more information on http://ibruce.info/2015/04/04/busuanzi/
 busuanzi_count:
   # count values only if the other configs are false
-  enable: true
+  enable: false
   # custom uv span for the whole site
   site_uv: true
   site_uv_header: <i class="fa fa-user"></i>
@@ -622,18 +616,7 @@ exturl: false
 #! ---------------------------------------------------------------
 
 # Motion
-#use_motion: true
-# 动态效果
-motion:
-  enable: false
-  async: false
-  transition:
-    post_block: fadeIn
-    post_header: slideDownIn
-    post_body: slideDownIn
-    coll_header: slideLeftIn
-    # Only for Pisces | Gemini.
-    sidebar: slideUpIn
+use_motion: true
 
 # Fancybox
 fancybox: true
