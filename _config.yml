@@ -13,7 +13,7 @@ language: zh-Hans
 date_format: '%Y-%m-%d'
 
 # Put your favicon.ico into `assets/` directory.
-favicon: /source/assets/favicon.ico
+favicon: /source/assets/images/favicon.ico
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com' and baseurl as '/child'
