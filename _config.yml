@@ -217,7 +217,7 @@ social:
   #微博: http://weibo.com/your-user-name
   微博: http://weibo.com/5376217854
   #豆瓣: http://douban.com/people/your-user-name
-  知乎: http://www.zhihu.com/people/_liuxiaowei
+  #知乎: http://www.zhihu.com/people/_liuxiaowei
 
 
 # Social Links Icons
@@ -304,7 +304,7 @@ excerpt_description: true
 # Automatically Excerpt. Not recommend.
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
-  enable: true
+  enable: false
   length: 150
 
 # Post meta display settings
