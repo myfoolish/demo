@@ -311,7 +311,7 @@ auto_excerpt:
 post_meta:
   item_text: true
   created_at: true
-  updated_at: false
+  updated_at: true #false
   categories: true
 
 # Post wordcount display settings
@@ -528,7 +528,7 @@ rating:
 # Show number of visitors to each article.
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
-  enable: true
+  enable: false
   app_id: #<app_id>
   app_key: #<app_key>
 
