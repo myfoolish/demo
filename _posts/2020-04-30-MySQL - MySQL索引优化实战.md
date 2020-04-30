@@ -5,7 +5,7 @@ description: MySQL索引优化实战
 categories:
 - develop
 tag: Java
-top: 1
+top: 2
 ---
 
 MySQL索引优化实战
