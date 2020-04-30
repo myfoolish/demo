@@ -275,10 +275,10 @@ sidebar:
   offset_float: 0
 
   # Back to top in sidebar
-  b2t: true #是否提供一键置顶 
+  b2t: false    #是否提供一键置顶
 
   # Scroll percent label in b2t button
-  scrollpercent: true #是否显示当前阅读进度
+  scrollpercent: false  #是否显示当前阅读进度
 
 
 # Blog rolls    推荐阅读
@@ -294,18 +294,18 @@ sidebar:
 # ---------------------------------------------------------------
 
 # Automatically scroll page to section which is under <!-- more --> mark.
-scroll_to_more: true
+scroll_to_more: true    #选取博客正文<!--more-->前的内容
 
 # Automatically saving scroll position on each post/page in cookies.
 save_scroll: false
 
 # Automatically excerpt description in homepage as preamble text.
-excerpt_description: true
+excerpt_description: true   #自动截取摘要
 
 # Automatically Excerpt. Not recommend.
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
-  enable: false
+  enable: false #自动截取一定程度的摘要
   length: 150
 
 # Post meta display settings
@@ -333,6 +333,9 @@ post_wordcount:
 #reward_comment: 如果你觉得这篇文章帮助到了你，你可以鼓励一下 
 #wechatpay: /path/to/wechat-reward-image
 #alipay: /path/to/alipay-reward-image
+
+#添加歌单地址配置
+background_music: //music.163.com/outchain/player?type=0&id=2826174639&auto=1&height=66
 
 # Declare license on posts
 post_copyright:
