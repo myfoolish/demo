@@ -166,11 +166,11 @@
       <!--/noindex-->
       {% endif %}
 
-{% if theme.background_music %}
-<div>
-  <iframe class="cc-license motion-element" frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="86" src="{{ background_music }}"></iframe>
-</div>
-{% endif %}
+	{% if site.background_music %}
+       <div>
+          <iframe class="cc-license motion-element" frameborder="no" border="0" marginwidth="0" marginheight="0" width="280" height="86" src="{{ site.background_music }}"></iframe>
+       </div>
+      {% endif %}
 
       {% if site.sidebar.b2t %}
         <div class="back-to-top">
