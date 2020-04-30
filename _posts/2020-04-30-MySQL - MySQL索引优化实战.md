@@ -2,7 +2,6 @@
 title: MySQL - MySQL索引优化实战
 date: 2020-4-30 13:30:00
 description: MySQL索引优化实战
-top: 2
 categories:
 - develop
 tag: Java
