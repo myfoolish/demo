@@ -334,9 +334,6 @@ post_wordcount:
 #wechatpay: /path/to/wechat-reward-image
 #alipay: /path/to/alipay-reward-image
 
-#添加歌单地址配置
-background_music: //music.163.com/outchain/player?type=0&id=2826174639&auto=1&height=66
-
 # Declare license on posts
 post_copyright:
   enable: false
