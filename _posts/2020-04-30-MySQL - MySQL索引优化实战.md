@@ -1,7 +1,7 @@
 ---
 title: MySQL - MySQL索引优化实战
+top：2
 date: 2020-04-30 13:30:00
-top：1
 description: MySQL索引优化实战
 categories:
 - develop
