@@ -236,7 +236,8 @@ social_icons:
 
 
 # Sidebar Avatar
-avatar: /source/assets/images/avatar.gif
+avatar:
+    url: /source/assets/images/avatar.gif
     rounded: true #鼠标放在头像上时是否旋转
     opacity: 1 #头像放缩指数
     rotated: true # false/true ,头像是否设为圆形,否则为矩形
