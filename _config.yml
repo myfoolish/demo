@@ -317,8 +317,9 @@ post_meta:
 # Post wordcount display settings
 post_wordcount:
   item_text: true
-  wordcount: false
-  min2read: false
+  wordcount: true
+  min2read: true
+  #totalcount: false
   separated_meta: true
 
 # Wechat Subscriber
@@ -436,18 +437,6 @@ changyan:
 # Support for LiveRe comments system.
 # You can get your uid from https://livere.com/insight/myCode (General web site)
 #livere_uid: your uid
-
-# Valine. 评论插件
-valine:
-  enable: true
-  appid: OuyHeA0XGL8hK4vgbqqweERx-gzGzoHsz  # your leancloud application appid
-  appkey: L58VglKmWULcGK2W2qwekWzM # your leancloud application appkey
-  notify: false # mail notifier , https://github.com/xCss/Valine/wiki
-  verify: false # Verification code
-  placeholder: Just go go # comment box placeholder
-  avatar: mm # gravatar style
-  guest_info: nick,mail,link # custom comment header
-  pageSize: 10 # pagination size
   
 # Support for gitalk comments system.
 gitalk:
@@ -471,7 +460,7 @@ gitalk:
 #add_this_id:
 
 # Share
-duoshuo_share: true
+#duoshuo_share: true
 
 # Google Webmaster tools verification setting
 # See: https://www.google.com/webmasters/
@@ -540,8 +529,8 @@ rating:
 # You can visit https://leancloud.cn get AppID and AppKey.
 leancloud_visitors:
   enable: true
-  app_id: OuyHeA0XGL8hK4vgbqqweERx-gzGzoHsz #<app_id>
-  app_key: L58VglKmWULcGK2W2qwekWzM #<app_key>
+  app_id: #<app_id>
+  app_key: #<app_key>
 
 firestore:
   enable: false
