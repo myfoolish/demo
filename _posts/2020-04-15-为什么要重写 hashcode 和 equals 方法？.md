@@ -4,7 +4,6 @@ description: 我在面试Java初级开发的时候，经常会问：你有没有
 categories:
  - develop
 tags: Java
-top: 5
 ---
 
 ## 为什么要重写 hashcode 和 equals 方法？
