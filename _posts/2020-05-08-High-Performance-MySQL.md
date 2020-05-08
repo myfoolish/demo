@@ -2,12 +2,11 @@
 title: High Performance MySQL
 date: 2020-05-08 11:00:00
 top: true
-cover: true
-toc: true
 categories:
-- develop
 - mysql
-tag: Java
+tag: 
+- Java
+- Develop
 ---
 
 # High Performance MySQL
