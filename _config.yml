@@ -246,9 +246,6 @@ toc:
   number: true
   # If true, all words will placed on next lines if header width longer then sidebar width.
   wrap: false
-  expand_all: true # 目录全展开
-  # Maximum heading depth of generated toc. You can set it in one post through `toc_max_depth` in Front-matter.
-  max_depth: 3 # 目录展开的标题级数
 
 
 # Creative Commons 4.0 International License.
@@ -281,7 +278,7 @@ sidebar:
   b2t: false    #是否提供一键置顶
 
   # Scroll percent label in b2t button
-  scrollpercent: false  #是否显示当前阅读进度
+  scrollpercent: true  #是否显示当前阅读进度
 
 
 # Blog rolls    推荐阅读
