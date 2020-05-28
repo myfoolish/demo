@@ -231,7 +231,7 @@ social_icons:
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
   Twitter: twitter
-  微博: weibo
+  Weibo: weibo
   icons_only: false #是否仅显示社交图标
 
 
@@ -275,7 +275,7 @@ sidebar:
   offset_float: 0
 
   # Back to top in sidebar
-  b2t: false    #是否提供一键置顶
+  b2t: true    #是否提供一键置顶
 
   # Scroll percent label in b2t button
   scrollpercent: true  #是否显示当前阅读进度
@@ -319,7 +319,7 @@ post_meta:
 post_wordcount:
   item_text: true
   wordcount: true
-  min2read: true
+  min2read: false
   #totalcount: false
   separated_meta: true
 
