@@ -109,7 +109,7 @@ seo: false
 
 # If true, will add site-subtitle to index page, added in jekyll config.
 # subtitle: Subtitle
-index_with_subtitle: false
+index_with_subtitle: true
 
 # ---------------------------------------------------------------
 # Menu Settings
@@ -246,6 +246,9 @@ toc:
   number: true
   # If true, all words will placed on next lines if header width longer then sidebar width.
   wrap: false
+  expand_all: true # 目录全展开
+  # Maximum heading depth of generated toc. You can set it in one post through `toc_max_depth` in Front-matter.
+  max_depth: 3 # 目录展开的标题级数
 
 
 # Creative Commons 4.0 International License.
@@ -305,7 +308,7 @@ excerpt_description: true   #自动截取摘要
 # Automatically Excerpt. Not recommend.
 # Please use <!-- more --> in the post to control excerpt accurately.
 auto_excerpt:
-  enable: true #自动截取一定程度的摘要
+  enable: false #自动截取一定程度的摘要
   length: 150
 
 # Post meta display settings
