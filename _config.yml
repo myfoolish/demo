@@ -275,7 +275,7 @@ sidebar:
   offset_float: 0
 
   # Back to top in sidebar
-  b2t: true    #是否提供一键置顶
+  b2t: false    #是否提供一键置顶
 
   # Scroll percent label in b2t button
   scrollpercent: true  #是否显示当前阅读进度
