@@ -9,7 +9,7 @@ subtitle: Xiaowei's blog
 description: 即使说了那么多丧气的话 也一直在努力生活啊
 author: 坏脾气先生L
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
-language: zh-Hans
+language: en
 date_format: '%Y-%m-%d'
 
 favicon: /source/assets/images/favicon.ico
@@ -109,7 +109,7 @@ seo: false
 
 # If true, will add site-subtitle to index page, added in jekyll config.
 # subtitle: Subtitle
-index_with_subtitle: true
+index_with_subtitle: false
 
 # ---------------------------------------------------------------
 # Menu Settings
@@ -282,11 +282,15 @@ sidebar:
 
 
 # Blog rolls    推荐阅读
-#links_title: Links
+links_title: Links
 #links_layout: block
-#links_layout: inline
-#links:
+links_layout: inline
+links:
   #Title: http://example.com/
+  MDN web docs: https://developer.mozilla.org/zh-CN/
+  Web前端导航: http://www.alloyteam.com/nav/
+  Vue.js 文档: https://cn.vuejs.org/v2/guide/
+  Google 前端开发基础: http://wf.uisdc.com/cn/
 
 
 # ---------------------------------------------------------------
