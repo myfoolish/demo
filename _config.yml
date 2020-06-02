@@ -4,12 +4,12 @@
 # ---------------------------------------------------------------
 
 # Site
-title: Myfoolish
-subtitle: Xiaowei's blog
+title: Xiaowei's blog
+subtitle: MyFoolish
 description: 即使说了那么多丧气的话 也一直在努力生活啊
 author: 坏脾气先生L
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
-language: en
+language: zh-Hans
 date_format: '%Y-%m-%d'
 
 favicon: /source/assets/images/favicon.ico
@@ -121,7 +121,6 @@ menu:
   #categories: /source/categories/
   archives: /source/archives/
   about: /source/about/
-  #archives: /source/archives/
   #tags: /source/tags/
   #sitemap: /sitemap.xml
   #commonweal: /source/404.html
