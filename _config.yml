@@ -4,8 +4,8 @@
 # ---------------------------------------------------------------
 
 # Site
-title: Xiaowei's blog
-subtitle: MyFoolish
+title: MyFoolish
+subtitle: Xiaowei's blog
 description: 即使说了那么多丧气的话 也一直在努力生活啊
 author: 坏脾气先生L
 # Support language: de, en, fr-FR, id, ja, ko, pt-BR, pt, ru, zh-Hans, zh-hk, zh-tw
@@ -324,9 +324,9 @@ post_meta:
 # Post wordcount display settings
 post_wordcount:
   item_text: true
-  wordcount: true
-  min2read: false
-  #totalcount: false
+  wordcount: true  # 单篇 字数统计
+  min2read: false   # 单篇 阅读时长
+  #totalcount: false    # 网站 字数统计
   separated_meta: true
 
 # Wechat Subscriber
@@ -342,7 +342,7 @@ post_wordcount:
 
 # Declare license on posts
 post_copyright:
-  enable: true
+  enable: false
   license: CC BY-NC-SA 3.0
   license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
 
