@@ -125,6 +125,7 @@ menu:
   #sitemap: /sitemap.xml
   #commonweal: /source/404.html
   #search: /search/
+  免费图床: /source/阿里图床.html
 
 
 # Enable/Disable menu icons.
@@ -143,6 +144,7 @@ menu_icons:
   archives: archive
   #sitemap: sitemap
   #commonweal: heartbeat
+  免费图床: image
 
 
 # ---------------------------------------------------------------
