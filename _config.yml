@@ -126,7 +126,7 @@ menu:
   #commonweal: /source/404.html
   #search: /search/
   免费图床: /source/阿里图床.html
-  music: music/index.html
+  music: /source/music/index.html
 
 
 # Enable/Disable menu icons.
