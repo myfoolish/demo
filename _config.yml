@@ -125,7 +125,6 @@ menu:
   #sitemap: /sitemap.xml
   #commonweal: /source/404.html
   #search: /search/
-  免费图床: /source/阿里图床.html
 
 
 # Enable/Disable menu icons.
@@ -144,7 +143,6 @@ menu_icons:
   archives: archive
   #sitemap: sitemap
   #commonweal: heartbeat
-  免费图床: image
 
 
 # ---------------------------------------------------------------
@@ -213,12 +211,14 @@ font:
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
 social:
   #LinkLabel: Link
-  GitHub: https://github.com/MyFoolish
+  GitHub: https://github.com/myfoolish
   Twitter: https://twitter.com/_liuxiaowei
   #微博: http://weibo.com/your-user-name
-  Weibo: http://weibo.com/5376217854
+  Weibo: http://weibo.com/myfoolish
   #Douban: http://douban.com/people/your-user-name
   #Zhihu: http://www.zhihu.com/people/_liuxiaowei
+  Love: /other/source/Love.html
+  图床: /other/source/图床.html
 
 
 # Social Links Icons
@@ -233,6 +233,8 @@ social_icons:
   GitHub: github
   Twitter: twitter
   Weibo: weibo
+  Love: heart
+  图床: image
   icons_only: false #是否仅显示社交图标
 
 
