@@ -204,7 +204,7 @@ function checkfunc($f,$m = false) {
  */
 function getParam($key, $default='')
 {
-    return trim($key && is_string($key) ? (isset($_POST[$key]) ? $_POST[$key] : (isset($_GET[$key]) ? $_GET[$key] : $default)) : $default);
+    return trim($key && is_string($key) ? (isset($_GET[$key]) ? $_GET[$key] : (isset($_GET[$key]) ? $_GET[$key] : $default)) : $default);
 }
 
 /**
