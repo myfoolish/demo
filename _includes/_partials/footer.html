@@ -23,8 +23,18 @@
 {% endif %}
 
 <!-- custom-footer -->
-<span id="jinrishici-sentence">正在加载今日诗词....</span>
+<span id="jinrishici_sentence">正在加载今日诗词....</span>
+<span id="jinrishici_info"></span><br/>
 <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
+<script type="text/javascript">
+    jinrishici.load(function(result) {
+        var sentence = document.querySelector("#jinrishici_sentence")
+        var info = document.querySelector("#jinrishici_info")
+        sentence.innerHTML = result.data.content
+        info.innerHTML = '【' + result.data.origin.dynasty + '】' + result.data.origin.author + '《' + result.data.origin.title + '》'
+    });
+</script>
+
 <span id="sitetime"></span>
 <script language=javascript>
     function siteTime() {
