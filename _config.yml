@@ -123,6 +123,7 @@ menu:
   about: /source/about/
   #tags: /source/tags/
   #sitemap: /sitemap.xml
+  晓语: /source/xiaoyu
   #commonweal: /source/404.html
   #search: /search/
 
@@ -142,6 +143,7 @@ menu_icons:
   #tags: tags
   archives: archive
   #sitemap: sitemap
+  晓语: text-height
   #commonweal: heartbeat
 
 
