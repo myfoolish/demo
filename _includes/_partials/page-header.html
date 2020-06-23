@@ -8,6 +8,8 @@
       {{ __.title.tags }}
     {% elsif page.type == "about" and page.title == nil %}
       {{ __.title.about }}
+	{% elsif page.type == "xiaoyu" and page.title == nil %}
+      {{ __.title.xiaoyu }}
     {% else %}
       {{ page.title }}
     {% endif %}
