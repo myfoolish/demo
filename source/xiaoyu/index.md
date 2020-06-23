@@ -1,6 +1,6 @@
 ---
 layout: page
-type: about
+type: 晓语
 ---
 
 Building...
