@@ -1,6 +1,6 @@
 ---
 layout: page
-type: 晓语
+type: xiaoyu
 ---
 
 Building...
