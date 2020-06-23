@@ -235,7 +235,7 @@ social_icons:
   微博: weibo
   Love: heart
   图床: image
-  icons_only: true #是否仅显示社交图标
+  icons_only: false #是否仅显示社交图标
 
 
 # Sidebar Avatar
