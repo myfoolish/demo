@@ -1,1 +1,14 @@
-<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1426723338&auto=1&height=66"></iframe>
+<div><hr>
+    <p id="hitokoto">:D 一言句子获取中...</p>
+    <script src="http://code.jquery.com/jquery-1.8.1.min.js"></script>
+    <script type="text/javascript" defer>
+        function getYiyan(){
+            $.getJSON("https://v1.hitokoto.cn/", function (data) {
+                if(data){
+                    $('#hitokoto').html("");
+                    $('#hitokoto').append("<strong style='color: #3273dc;'>"+data.hitokoto+"</strong>"+
+                        "<p>"+"来源《"+data.from+"》</p><p>提供者-"+data.creator+"</p>");
+                }});}
+        $(function (){getYiyan();$('#hitokoto').click(function(){getYiyan();})});
+    </script>
+</div>
