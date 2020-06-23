@@ -48,6 +48,11 @@
       </div>
     </main>
 
+	<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.6/lib/darkmode-js.min.js"></script>
+	<script>
+	  new Darkmode().showWidget();
+	</script>
+
     <footer id="footer" class="footer">
       <div class="footer-inner">
         {% include _partials/footer.html %}
@@ -86,11 +91,6 @@
   {% include _third-party/scroll-cookie.html %}
   {% include _third-party/exturl.html %}
 </body>
-
-<script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.6/lib/darkmode-js.min.js"></script>
-<script>
-  new Darkmode().showWidget();
-</script>
 
 <!-- 页面点击小红心 -->
 <script type="text/javascript" src="{{ site.js | relative_url }}/src/clicklove.js"></script>
