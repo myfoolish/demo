@@ -214,7 +214,7 @@ social:
   GitHub: https://github.com/myfoolish
   Twitter: https://twitter.com/_liuxiaowei
   #微博: http://weibo.com/your-user-name
-  Weibo: http://weibo.com/myfoolish
+  微博: http://weibo.com/myfoolish
   #Douban: http://douban.com/people/your-user-name
   #Zhihu: http://www.zhihu.com/people/_liuxiaowei
   Love: /demo/source/other/Love.html
@@ -232,7 +232,7 @@ social_icons:
   # KeyMapsToSocialItemKey: NameOfTheIconFromFontAwesome
   GitHub: github
   Twitter: twitter
-  Weibo: weibo
+  微博: weibo
   Love: heart
   图床: image
   icons_only: true #是否仅显示社交图标
