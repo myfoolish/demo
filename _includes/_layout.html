@@ -53,22 +53,25 @@
 	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 	<!-- require MetingJS -->
 	<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-	<meting-js style="width: auto;height: 2000px;"
-			server="netease"
-			type="playlist"
-			id="2826174639"
-			autoplay="true"
-			theme="#2980b9"
-			preload='none'
-			loop="all"
-			mutex="true"
-			autoplay="false"
-            order="list"
-            storageName="aplayer-setting"
-            lrctype= 0
-            list-max-height="800px"
-			fixed="true">
-	</meting-js>
+	<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script>
+	<div class="Pjax">
+		<meting-js style="width: auto;height: 2000px;"
+				server="netease"
+				type="playlist"
+				id="2826174639"
+				autoplay="true"
+				theme="#2980b9"
+				preload='none'
+				loop="all"
+				mutex="true"
+				autoplay="false"
+				order="list"
+				storageName="aplayer-setting"
+				lrctype= 0
+				list-max-height="800px"
+				fixed="true">
+		</meting-js>
+	</div>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
@@ -113,5 +116,9 @@
 <script type="text/javascript" src="{{ site.js | relative_url }}/src/clicklove.js"></script>
 <!--崩溃欺骗-->
 <script type="text/javascript" src="{{ site.js | relative_url }}/src/crash_cheat.js"></script>
+
+<script type="text/javascript">
+	$(document).pjax('a', '.Pjax')
+</script>
 
 </html>
