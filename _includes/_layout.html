@@ -53,7 +53,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 	<!-- require MetingJS -->
 	<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-	<div class="Pjax">
+	<div class="container" id="pjax-container">
 		<meting-js style="width: auto;height: 2000px;"
 				server="netease"
 				type="playlist"
@@ -116,9 +116,9 @@
 <!--崩溃欺骗-->
 <script type="text/javascript" src="{{ site.js | relative_url }}/src/crash_cheat.js"></script>
 
-<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script>
+<script src="https://lib.baomitu.com/jquery.pjax/2.0.1/jquery.pjax.js"></script>
 <script type="text/javascript">
-	$(document).pjax('a', '.Pjax')
+	$(document).pjax('a', '#pjax-container')
 </script>
 
 </html>
