@@ -1,6 +1,6 @@
 'use strict';
 var pagination = require('hexo-pagination');
-module.exports = function(locals){
+function locals(locals){
   var config = this.config;
   var posts = locals.posts;
     posts.data = posts.data.sort(function(a, b) {
