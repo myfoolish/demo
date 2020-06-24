@@ -124,6 +124,7 @@ menu:
   #tags: /source/tags/
   #sitemap: /sitemap.xml
   xiaoyu: /source/xiaoyu/
+  album: /source/album/
   #commonweal: /source/404.html
   #search: /search/
 
@@ -144,6 +145,7 @@ menu_icons:
   archives: archive
   #sitemap: sitemap
   xiaoyu: text-height
+  album: image
   #commonweal: heartbeat
 
 

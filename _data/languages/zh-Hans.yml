@@ -8,6 +8,7 @@ title:
   tags: 标签
   about: 关于
   xiaoyu: 晓语
+  album: 相册
 
 author: 博主
 
@@ -18,6 +19,7 @@ menu:
   tags: 标签
   about: 关于
   xiaoyu: 晓语
+  album: 相册
   search: 搜索
   schedule: 日程表
   sitemap: 站点地图
