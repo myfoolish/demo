@@ -66,27 +66,9 @@
     {% endunless %}
 
   </div>
-
-  {% include _scripts/vendors.html %}
-  {% include _scripts/commons.html %}
-
-  {% assign scheme_script = '_scripts/schemes/' | append: site.scheme | downcase | append: '.html' %}
-  {% include {{ scheme_script }} %}
-
-  {{ script_extra }}
-
-  {% include _scripts/boostrap.html %}
-
-  {% include _third-party/comments/index.html %}
-  {% include _third-party/search/index.html %}
-  {% include _third-party/analytics/lean-analytics.html %}
-  {% include _third-party/seo/baidu-push.html %}
-  {% include _third-party/rating.html %}
-  {% include _third-party/mathjax.html %}
-  {% include _third-party/scroll-cookie.html %}
-  {% include _third-party/exturl.html %}
   
-  <!-- require APlayer -->
+  <div>
+	<!-- require APlayer -->
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
 	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 	<!-- require MetingJS -->
@@ -118,6 +100,26 @@
                 });
             })
 	</script>
+  </div>
+
+  {% include _scripts/vendors.html %}
+  {% include _scripts/commons.html %}
+
+  {% assign scheme_script = '_scripts/schemes/' | append: site.scheme | downcase | append: '.html' %}
+  {% include {{ scheme_script }} %}
+
+  {{ script_extra }}
+
+  {% include _scripts/boostrap.html %}
+
+  {% include _third-party/comments/index.html %}
+  {% include _third-party/search/index.html %}
+  {% include _third-party/analytics/lean-analytics.html %}
+  {% include _third-party/seo/baidu-push.html %}
+  {% include _third-party/rating.html %}
+  {% include _third-party/mathjax.html %}
+  {% include _third-party/scroll-cookie.html %}
+  {% include _third-party/exturl.html %}
 </body>
 
 <!-- 页面点击小红心 -->
