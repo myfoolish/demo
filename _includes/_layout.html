@@ -88,18 +88,6 @@
 	// PJAX 完成之后执行的函数，可以和上面的重载放在一起
 	document.addEventListener('pjax:complete', function () {
 		$(".section").css({opacity:1});
-		if(true){
-			
-		}
-		if(false){
-			loadMathJax();
-		}
-		loadMainJs(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
-		loadBackTop();
-		loadBusuanzi();
-		if(typeof loadBanner == 'function'){
-			loadBanner();
-		}
 	});
 	</script>
 
