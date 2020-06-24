@@ -9,7 +9,7 @@ date: 2019-07-30 10:43:45
 <!-- require MetingJS -->
 
 <script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-<script><meting-js style="width: auto;height: 2000px;"
+<script style="width: auto;height: 2000px;"
     server="netease"
     type="playlist"
     id="2364053447"
@@ -20,7 +20,6 @@ date: 2019-07-30 10:43:45
     storageName="aplayer-setting"
     lrctype= 0
     list-max-height="800px"
-    ></meting-js>
 
 </script>
 
