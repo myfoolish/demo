@@ -1,5 +1,4 @@
 'use strict';
-var pagination = require('hexo-pagination');
 function locals(locals){
   var config = this.config;
   var posts = locals.posts;
