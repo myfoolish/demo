@@ -47,6 +47,19 @@
         {% endif %}
       </div>
     </main>
+	
+	<!-- require APlayer -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+	<!-- require MetingJS -->
+	<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+	<meting-js
+			server="netease"
+			type="playlist"
+			id="2826174639"
+			autoplay="true"
+			fixed="true">
+	</meting-js>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
@@ -86,19 +99,6 @@
   {% include _third-party/scroll-cookie.html %}
   {% include _third-party/exturl.html %}
 </body>
-
-<!-- require APlayer -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-<!-- require MetingJS -->
-<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-<meting-js
-        server="netease"
-        type="playlist"
-        id="2826174639"
-        autoplay="true"
-        fixed="true">
-</meting-js>
 
 <!-- 页面点击小红心 -->
 <script type="text/javascript" src="{{ site.js | relative_url }}/src/clicklove.js"></script>
