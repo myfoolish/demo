@@ -1,6 +1,6 @@
 ---
 layout: page
-type: images
+type: album
 ---
 
 这里是相册
