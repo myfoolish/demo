@@ -1,4 +1,6 @@
 ---
+layout: page
+type: album
 date: 2020-06-23 12:00:00
 thumbnail: http://wx2.sinaimg.cn/mw1024/005RAHfgly1fvfc4f19qfj33402c0qv9.jpg
 ---
