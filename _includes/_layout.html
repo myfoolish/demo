@@ -53,13 +53,54 @@
 	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
 	<!-- require MetingJS -->
 	<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-	<meting-js
+	<meting-js style="width: auto;height: 2000px;"
 			server="netease"
 			type="playlist"
 			id="2826174639"
 			autoplay="true"
+			theme="#2980b9"
+			preload='none'
+			loop="all"
+			mutex="true"
+			autoplay="false"
+            order="list"
+            storageName="aplayer-setting"
+            lrctype= 0
+            list-max-height="400px"
 			fixed="true">
 	</meting-js>
+	<script type="text/javascript">
+	var pjax = new Pjax({
+		elements: "a",//代表点击链接就更新
+		selectors: [  //代表要更新的节点
+			".section",
+			"title"
+		],
+		cache: true,
+		cacheBust:false
+	})
+
+	// 开始 PJAX 执行的函数
+	document.addEventListener('pjax:send', function () {
+	});
+	
+	// PJAX 完成之后执行的函数，可以和上面的重载放在一起
+	document.addEventListener('pjax:complete', function () {
+		$(".section").css({opacity:1});
+		if(true){
+			$.getScript('https://cdn.jsdelivr.net/gh/removeif/removeif.github.io@v3.0.5/js/comment-issue-data.min.js',function(){loadIssueData('46a9f3481b46ea0129d8','79c7c9cb847e141757d7864453bcbf89f0655b24','removeif','blog_comment',false);});
+		}
+		if(false){
+			loadMathJax();
+		}
+		loadMainJs(jQuery, window.moment, window.ClipboardJS, window.IcarusThemeSettings);
+		loadBackTop();
+		loadBusuanzi();
+		if(typeof loadBanner == 'function'){
+			loadBanner();
+		}
+	});
+	</script>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
