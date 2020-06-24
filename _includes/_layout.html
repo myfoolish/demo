@@ -9,7 +9,7 @@
   {% assign html_class = html_class | append: ' use-motion' %}
 {% endif %}
 
-<html class="{{ html_class | downcase }}" lang="{{ site.language }}" id="loading">
+<html class="{{ html_class | downcase }}" lang="{{ site.language }}">
 <head>
   {% include _partials/head.html %}
   <title>{{ title }}</title>
@@ -23,7 +23,7 @@
     {% assign container_class = container_class | append: 'sidebar-position-' | append: site.sidebar.position %}
   {% endif %}
 
-  <div class="{{ container_class }} {{ page_class }} ">
+  <div class="{{ container_class }} {{ page_class }} " id="container">
     <div class="headband"></div>
 	
 	<!-- 添加fork Github 找到自己喜欢的样式：http://tholman.com/github-corners/ -->
@@ -47,30 +47,6 @@
         {% endif %}
       </div>
     </main>
-	
-	<!-- require APlayer -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
-	<!-- require MetingJS -->
-	<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
-	<div class="container" id="pjax-container">
-		<meting-js style="width: auto;height: 2000px;"
-				server="netease"
-				type="playlist"
-				id="2826174639"
-				autoplay="true"
-				theme="#2980b9"
-				preload='none'
-				loop="all"
-				mutex="true"
-				autoplay="false"
-				order="list"
-				storageName="aplayer-setting"
-				lrctype= 0
-				list-max-height="800px"
-				fixed="true">
-		</meting-js>
-	</div>
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
@@ -109,21 +85,44 @@
   {% include _third-party/mathjax.html %}
   {% include _third-party/scroll-cookie.html %}
   {% include _third-party/exturl.html %}
+  
+  <!-- require APlayer -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+	<script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+	<!-- require MetingJS -->
+	<script src="https://cdn.jsdelivr.net/npm/meting@2/dist/Meting.min.js"></script>
+	<meting-js
+			server="netease"
+			type="playlist"
+			id="2826174639"
+			autoplay="true"
+			theme="#2980b9"
+			preload='none'
+			loop="all"
+			mutex="true"
+			autoplay="false"
+            order="list"
+            storageName="aplayer-setting"
+            lrctype= 0
+            list-max-height="800px"
+			fixed="true">
+	</meting-js>
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="https://lib.baomitu.com/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+	<script type="text/javascript">
+            $(function () {
+                $(document).pjax('a', '#container', {
+                    fragment: '#container',
+                    timeout: 5000,
+                    cache: false
+                });
+            })
+	</script>
 </body>
 
 <!-- 页面点击小红心 -->
 <script type="text/javascript" src="{{ site.js | relative_url }}/src/clicklove.js"></script>
 <!--崩溃欺骗-->
 <script type="text/javascript" src="{{ site.js | relative_url }}/src/crash_cheat.js"></script>
-
-<script src="https://lib.baomitu.com/jquery.pjax/2.0.1/jquery.pjax.js"></script>
-<script type="text/javascript">
-	$(document).on('pjax:send', function() {
-	  $('#loading').show()
-	})
-	$(document).on('pjax:complete', function() {
-	  $('#loading').hide()
-	})
-</script>
 
 </html>
