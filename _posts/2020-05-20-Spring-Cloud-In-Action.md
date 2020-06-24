@@ -2,7 +2,7 @@
 title: Spring Cloud In Action
 date: 2020-05-20 08:30:00
 top: 2
-sticky: true
+sticky: 2
 description: Spring Cloud In Action
 categories:
 - Develop
