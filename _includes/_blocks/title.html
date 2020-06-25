@@ -16,6 +16,8 @@
       {{ __.title.xiaoyu | append: page_title_suffix }}
 	{% elsif page.type == "album" and page.title == nil %}
       {{ __.title.album | append: page_title_suffix }}
+	{% elsif page.type == "music" and page.title == nil %}
+      {{ __.title.music | append: page_title_suffix }}
     {% else %}
       {{ page.title | append: page_title_suffix }}
     {% endif %}
