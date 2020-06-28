@@ -113,4 +113,16 @@
 <script type="text/javascript" src="{{ site.js | relative_url }}/src/clicklove.js"></script>
 <!--崩溃欺骗-->
 <script type="text/javascript" src="{{ site.js | relative_url }}/src/crash_cheat.js"></script>
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.pjax/2.0.1/jquery.pjax.min.js"></script>
+<script type="text/javascript">
+	$(document).on('pjax:start', function () {
+    if (window.aplayers) {
+        for (let i = 0; i < window.aplayers.length; i++) {
+            window.aplayers[i].destroy();
+        }
+        window.aplayers = [];
+    }
+});
+</script>
 </html>
