@@ -118,10 +118,6 @@ type: xiaoyu
 这是测试pre
 </pre>
 
-<code>
-
-這是测试code
-
-</code>
+<code>這是测试code</code>
 
 这是对比code
