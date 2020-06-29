@@ -113,3 +113,15 @@ type: xiaoyu
 ------
 
 部分搜集于网络，如有侵权请联系myfoolish@126.com，马上处理😊。
+
+<pre>
+这是测试pre
+</pre>
+
+<code>
+
+這是测试code
+
+</code>
+
+这是对比code
