@@ -97,7 +97,7 @@ type: xiaoyu
 
 ---
 
-***[只剩下痴痴笑笑](myfoolish.github.io/demo/source/xiaoyu/smile)***<br>
+***[只剩下痴痴笑笑](/smile)***<br>
 
 ***诗词意境***<br>
 
