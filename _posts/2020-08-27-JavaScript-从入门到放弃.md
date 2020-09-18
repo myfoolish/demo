@@ -97,11 +97,44 @@ var 变量名 = 值;	// JavaScript 变量是弱类型，即同一个变量可以
 | 函数名    | 描述                                                         |
 | --------- | ------------------------------------------------------------ |
 | alert()   | 显示带有一段消息和一个确认按钮的警告框![alert](https://myfoolish.github.io/picture/Develop/JavaScript/alert.png) |
-| confirm() | 显示带有一段消息以及确认按钮和取消按钮的确认框![confirm](https://myfoolish.github.io/picture/Develop/JavaScript/confirm.png)确认框：确认返回 true 取消返回false |
+| confirm() | 显示带有一段消息以及确认按钮和取消按钮的确认框![confirm](https://myfoolish.github.io/picture/Develop/JavaScript/confirm.png)确认框：确认返回  true 取消返回 |
 | prompt()  | 显示可提示用户输入的提示框![prompt](https://myfoolish.github.io/picture/Develop/JavaScript/prompt.png)点击确定获取用户输入数据 |
 
-
-
 #### Location 对象
+
+| 属性     | 描述                                         |
+| -------- | -------------------------------------------- |
+| hash     | 设置或返回从井号（#）开始的 URL （锚）       |
+| host     | 设置或返回主机名和当前 URL 的端口号          |
+| hostname | 设置或返回当前 URL 的主机名                  |
+| href     | 设置或返回完整的 URL                         |
+| pathname | 设置或返回当前 URL 的路径部分                |
+| port     | 设置或返回当前 URL 的端口号                  |
+| protocol | 设置或返回当前 URL 的协议                    |
+| search   | 设置或返回从问好（?）开始的 URL （查询部分） |
+
+```js
+<script type="text/javascript">
+    function change(){
+    	location.href = "https://myfoolish.github.io";
+	}
+</script>
+
+<input type="button" value="点我" onclick="change()" />
+```
+
+#### History对象
+
+go() 方法：跳转的指定页面
+
+​	go(-1) 加载前一个链接，等效 back()
+
+​	go(1) 加载后一个链接，等效forward()
+
+| 方法      | 描述                              |
+| --------- | --------------------------------- |
+| back()    | 加载 history 列表中的前一个 URL   |
+| forward() | 加载 history 列表中的下一个 URL   |
+| go()      | 加载 history 列表中的某个具体页面 |
 
 # JavaScript 高级
