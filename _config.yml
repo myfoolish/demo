@@ -699,8 +699,5 @@ css: source/assets/css
 js: source/assets/js
 images: source/assets/images
 
-# 网易云全局播放设置
-pjax:true
-
 # Theme version
 version: 5.2.1
