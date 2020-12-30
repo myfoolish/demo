@@ -1,6 +1,6 @@
 ---
 layout: page
-type: xiaoyu
+type: music
 ---
 
 <!DOCTYPE html>
