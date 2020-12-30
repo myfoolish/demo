@@ -3,6 +3,8 @@ layout: page
 type: xiaoyu
 ---
 
+# MyFoolish 在线音乐播放器
+
 <!DOCTYPE html>
 <html>
 	<head>
