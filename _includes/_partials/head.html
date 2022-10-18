@@ -2,6 +2,8 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
+{% include _partials/head/external-fonts.html %}
+{% include _custom/head.html %}
 
 {% if site.pace %}
   {% assign pace_css_uri = site.vendors._internal | append: '/pace/'| append: site.pace_theme | append: '.min.css?v=1.0.2' | relative_url %}
@@ -58,8 +60,6 @@
   {% endif %}
   <link href="{{ fancybox_css_uri }}" rel="stylesheet" type="text/css" />
 {% endif %}
-
-{% include _partials/head/external-fonts.html %}
 
 {% assign font_awesome_uri = site.vendors._internal | append: '/font-awesome/css/font-awesome.min.css?v=4.6.2' | relative_url %}
 {% if site.vendors.fontawesome %}
@@ -131,5 +131,3 @@
 {% if site.canonical %}
   <link rel="canonical" href="{{ page.canonical_path | replace: 'index.html', '' | absolute_url }}"/>
 {% endif %}
-
-{% include _partials/head/custom-head.html %}

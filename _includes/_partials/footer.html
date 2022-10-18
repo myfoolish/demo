@@ -39,8 +39,8 @@
 <span id="jinrishici-sentence">正在加载今日诗词....</span><br>
 <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
 
-<span id="sitetime"></span>
-<script language=javascript>
+<span id="siteTime"></span>
+<script type="application/javascript">
     function siteTime() {
         window.setTimeout("siteTime()", 1000);
         var seconds = 1000;
@@ -71,7 +71,7 @@
         var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
         var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) / minutes);
         var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours - diffMinutes * minutes) / seconds);
-        document.getElementById("sitetime").innerHTML = "我已经运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒啦";
+        document.getElementById("siteTime").innerHTML = "我已经运行 " +diffYears+" 年 "+diffDays + " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒啦";
     }
     siteTime();
 </script>

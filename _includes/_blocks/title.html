@@ -12,8 +12,8 @@
       {{ __.title.tags | append: page_title_suffix }}
     {% elsif page.type == "about" and page.title == nil %}
       {{ __.title.about | append: page_title_suffix }}
-	{% elsif page.type == "xiaoyu" and page.title == nil %}
-      {{ __.title.xiaoyu | append: page_title_suffix }}
+	{% elsif page.type == "xyu" and page.title == nil %}
+      {{ __.title.xyu | append: page_title_suffix }}
 	{% elsif page.type == "album" and page.title == nil %}
       {{ __.title.album | append: page_title_suffix }}
 	{% elsif page.type == "music" and page.title == nil %}
@@ -23,7 +23,7 @@
     {% endif %}
   {% endcapture %}
 {% when 'archive' %}
-  {% capture title %}{{ __.title.archives }} | {{ site.title }}{% endcapture %}
+  {% capture title %}{{ __.title.archive }} | {{ site.title }}{% endcapture %}
 {% when 'category' %}
   {% capture title %}{{ __.title.category }} | {{ site.title }}{% endcapture %}
 {% when 'tag' %}

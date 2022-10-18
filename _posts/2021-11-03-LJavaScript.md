@@ -1,12 +1,13 @@
 ---
-title: JavaScript 从入门到放弃
-date: 2020-08-27 11:11:00
-description: JavaScript 基础 + 练习
+title: LWeb
+date: 2025-11-18 00:00:00
 categories:
 - Develop
 - 前端
 tag: 
 - JavaScript
+- Vue
+description: 这里是 LWeb（JavaScript「主」、Vue「主」、...）
 ---
 
 # JavaScript 基础
