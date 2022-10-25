@@ -1325,16 +1325,21 @@ MySQL命令恢复
 例如: source d:\dql.sql
 注意:使用这种方式恢复数据，首先要登录数据库
 ```
+## 日志模块
+
+redo log（重做日志）和 binlog（归档日志）
+当有一条记录需要更新的时候，InnoDB 引擎就会先把记录写到 redo log 里面，并更新内存，这个时候更新就算完成了。同时，InnoDB 引擎会在适当的时候，将这个操作记录更新到磁盘里面，而这个更新往往是在系统比较空闲的时候做。
+InnoDB 的 redo log 是固定大小的，比如可以配置为一组 4 个文件，每个文件的大小是 1GB，那么这块“粉板”总共就可以记录 4GB 的操作。从头开始写，写到末尾就又回到开头循环写，如下面这个图所示。
 
 ## 事务日志
 
 事务的隔离级别是通过锁实现的，而事务的原子性、一致性和持久性则是通过事务日志实现的
 
-**redo**
+### redo
 
 事务的实现是基于数据库的存储引擎，不同的存储引擎对事务的支持程度不一样，MySQL 中支持事务的存储引擎有 InnoDB，在 InnoDB 的存储引擎中，事务日志通过重做 (redo) 日志和 InnoDB 存储引擎的日志缓冲 (InnoDB Log Buffer) 实现。事务开启时，事务中的操作，都会先写入存储引擎的日志缓冲中，在事务提交之前，这些缓冲的日志都需要提前刷新到磁盘上持久化，这就是 DBA 们口中常说的“日志先行” (Write-Ahead Logging)。当事务提交之后，在 Buffer Pool 中映射的数据文件才会慢慢刷新到磁盘。此时如果数据库崩溃或者宕机，那么当系统重启进行恢复时，就可以根据 redo log 中记录的日志，把数据库恢复到崩溃前的一个状态。未完成的事务，可以继续提交，也可以选择回滚，这基于恢复的策略而定。
 
-**undo**
+### undo
 
 undo log 主要为事务的回滚服务。在事务执行的过程中，除了记录 redo log，还会记录一定量的 undo log。undo log 记录了数据在每个操作前的状态，如果事务执行过程中需要回滚，就可以根据 undo log 进行回滚操作。单个事务的回滚，只会回滚当前事务做的操作，并不会影响到其他的事务做的操作。
 
@@ -2533,14 +2538,15 @@ Redis除了设置每秒10次的扫描频率之外，还设置了每次扫描不�
 
 # Elasticsearch
 ## ES 目录介绍
-- bin：可执行文件在里面，运行es的命令就在这个里面，包含了一些脚本文件等
-- config：配置文件目录
-- JDK：java环境
-- lib：依赖的jar，类库
-- logs：日志文件
-- modules：es相关的模块
-- plugins：可以自己开发的插件
-- data：这个目录没有，自己新建一下，后面要用-> mkdir data，这个作为索引目录
+* bin：可执行文件在里面，运行es的命令就在这个里面，包含了一些脚本文件等
+* config：配置文件目录
+* JDK：java环境
+* lib：依赖的jar，类库
+* logs：日志文件
+* modules：es相关的模块
+* plugins：可以自己开发的插件
+* data：这个目录没有，自己新建一下，后面要用-> mkdir data，这个作为索引目录
+
 ## ES 环境配置
 _注意⚠️：不能使用root账户启动es_
 
@@ -2598,7 +2604,50 @@ DELETE  http://192.168.31.xx:9200/索引名
 - http://192.168.31.xx:9200/_cat/indices?v  （显示列名）
 ### 查询索引
 - http://192.168.31.xx:9200/索引名/_search                         （查询所有）
-- http://192.168.31.xx:9200/索引名/_doc/_search                         （查询所有）
+- http://192.168.31.xx:9200/索引名/_doc/_search                    （查询所有）
+#### 内置分词器
+* standard：默认分词，单词会被拆分，大小会转换为小写。
+* simple：按照非字母分词。大写转为小写。
+* whitespace：按照空格分词。忽略大小写。
+* stop：去除无意义单词，比如the/a/an/is…
+* keyword：不做分词。把整个文本作为一个单独的关键词。
+
+POST http://192.168.31.xx:9200/_analyze
+```json5
+{
+  "analyzer": "standard",
+  "text": "text文本"
+}
+```
+#### 中文分词器
+es内置分词器不支持对中文拆分，会将中文的每一个汉字都拆开，这不满足需求，所以需要安装中文分词插件。
+
+https://github.com/medcl/elasticsearch-analysis-ik下载对应es版本的。
+
+解压 unzip elasticsearch-analysis-ik-6.4.3.zip -d /usr/local/elasticsearch-6.4.3/plugins/ik
+##### 自定义中文词库
+有些网络用语或专有名词不能被当成一个词，所以需要我们自定义。
+```shell
+vim /usr/local/elasticsearch-6.4.3/plugins/ik/config/IKAnalyzer.cfg.xml
+```
+```xml
+<!-- 用户可以在这里自配置自己的扩展字典 -->
+<entry key="ext_dic">custom.dic</entry>
+```
+2、在IKAnalyzer.cfg.xml同级创建custom.dic
+```shell
+vim custom.dic
+```
+3、在custom.dic中添加自定义中文词语
+```text
+慕课网
+慕课
+课网
+慕
+课
+网
+```
+4、重启
 #### QueryString 查询
 在 url 中拼接做为请求参数的查询称之为 QueryString
 - http://192.168.31.xx:9200/索引名/_search?q=字段名:内容             （单条件）
@@ -2607,17 +2656,19 @@ DELETE  http://192.168.31.xx:9200/索引名
 #### DSL搜索
 QueryString用的很少，一旦参数复杂就难以构建，所以大多查询都会使用dsl来进行查询更好。DSL(Domain Specific Language 特定领域语言)基于JSON格式的数据查询查询更灵活，有利于复杂查询。
 
-##### DSL搜索 - 语法
 POST /shop/_doc/_search
+##### DSL搜索 - 语法
 ```json5
+// 查询
 {
-  // 查询
-  "query":{
-    "match":{
-      "desc":"慕课网"
+  "query": {
+    "match": {
+      "desc": "慕课网"
     }
-  },
-  // 判断某个字段是否存在
+  }
+}
+// 判断某个字段是否存在
+{
   "query": {
     "exists":{
       "field":"desc"
@@ -2625,6 +2676,39 @@ POST /shop/_doc/_search
   }
 }
 // 语法格式为一个json object，内容都key-value键值对，json可以嵌套。
+```
+###### match 扩展
+**operator**: 
+  * or: 搜索内容分词后，只要存在一个词语匹配就展示结果
+  * and: 搜索内容分词后，都要满足词语匹配
+```json5
+{
+  "query": {
+    "match": {
+      "desc": {
+        "query": "xbox游戏机",
+        "operator": "or"
+      }
+    }
+  }
+}
+// 相当于select * from 表 where desc='xbox' or desc='游戏机'
+```
+**minimum_should_match**: 最低匹配精度，至少有*分词后的词语个数* x 百分比，得出一个数据值取整。也能设置具体的数字，表示个数。
+
+eg: 当前属性设置为80，若一个查询分词后有8个，那么匹配度按照8 x 80% = 6.4，则desc中至少需要有6个词语匹配就展示；
+
+```json5
+{
+  "query": {
+    "match": {
+      "desc": {
+        "query": "女友送我好玩的xbox游戏机",
+        "minimum_should_match": "80%"
+      }
+    }
+  }
+}
 ```
 ##### DSL搜索 - match_all 查询所有
 ```json5
@@ -2682,4 +2766,314 @@ _注意⚠️：match会对慕课网先进行分词（其实就是全文检索�
 }
 ```
 _注意⚠️：match分词后搜索只要有匹配就返回，match_phrase分词结果必须在text字段、分词中都包含，而且顺序必须相同，都是连续的。（搜索比较严格）_
+##### DSL搜索 - 根据文档主键ids搜索
+```json5
+{
+  "query": {
+    "ids": {
+      "type": "_doc",
+      "values": ["1001", "1010", "1008"]
+    }
+  }
+}
+```
+##### DSL搜索 - multi_match
+满足使用 match 在多个字段中进行查询的需求
+```json5
+{
+  "query": {
+    "multi_match": {
+      "query": "皮特帕克慕课网",
+      "fields": ["desc", "nickname"]
+    }
+  }
+}
+```
+##### DSL搜索 - boost
+为某个字段设置权重，权重越高，文档相关性得分就越高。通常来说搜索商品名称要比商品简介的权重更高。
+```json5
+{
+  "query": {
+    "multi_match": {
+      "query": "皮特帕克慕课网",
+      "fields": ["desc", "nickname^10"] // nickname^10 代表搜索提升10倍相关性，也就是说搜索的时候以nickname为主，desc为辅。
+    }
+  }
+}
+```
+特殊场景下，某些词语可以单独加权，这样可以排得更加靠前。
+```json5
+{
+  "query": {
+    "bool": {
+      "should": [
+        {
+          "match": {
+            "desc": {
+              "query": "律师",
+              "boost": 18
+            }
+          }
+        },
+        {
+          "match": {
+            "desc": {
+              "query": "进修",
+              "boost": 2
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+```
 
+##### DSL搜索 - 布尔查询
+可以组合多重查询
+* must：查询必须匹配搜索条件，譬如 and
+* should：查询匹配满足1个以上条件，譬如 or
+* must_not：不匹配搜索条件，一个都不要满足
+```json5
+// 单个
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "multi_match": {
+            "query": "慕课网",
+            "fields": ["desc", "nickname"]
+          }
+        },
+        {
+          "term": {
+            "birthday": "1996-01-14"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+```json5
+// 多个
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "desc": "慕"
+          }
+        },
+        {
+          "match": {
+            "nickname": "慕"
+          }
+        }
+      ],
+      "should": [
+        {
+          "match": {
+            "sex": "0"
+          }
+        }
+      ],
+      "must_not": [
+        {
+          "term": {
+            "birthday": "1992-12-24"
+          }
+        }
+      ]
+    }
+  }
+}
+```
+##### DSL搜索 - 过滤器
+对搜索出来的结果进行数据过滤。不会到es库里去搜，不会去计算文档的相关度分数，所以过滤的性能会比较高，过滤器可以和全文搜索结合在一起使用。
+
+post_filter元素是一个顶层元素，只会对搜索结果进行过滤。不会计算数据的匹配度相关性分数，不会根据分数去排序，query则相反，会计算分数，也会按照分数去排序。
+
+使用场景
+* query: 根据用户搜索条件检索匹配记录
+* post_filter: 用于查询后，对结果数据的筛选
+* 不等式: gte: 大于等于、lte: 小于等于、gt: 大于、lt: 小于
+```json5
+{
+  "query": {
+    "match": {
+      "desc": "慕课网游戏"
+    }
+  },
+  "post_filter": {
+    "range": {
+      "money": {
+        "gt": 60,
+        "lt": 1000
+      }
+    }
+  }
+}
+// 上面关键词是“慕课网游戏”，并且过滤条件是“money”大于60且小于1000的。
+```
+```json5
+// 下面关键词是“慕课网游戏”，并且过滤条件是“money”小于60或大于1000的
+{
+  "query": {
+    "bool": {
+      "must": [
+        {
+          "match": {
+            "desc": "慕课网游戏"
+          }
+        }
+      ],
+      "should": [
+        {
+          "range": {
+            "money": {
+              "lt": 60
+            }
+          }
+        },
+        {
+          "range": {
+            "money": {
+              "gt": 1000
+            }
+          }
+        }
+      ],
+      "minimum_should_match": 1
+    }
+  }
+}
+```
+##### DSL搜索 - 排序
+es的排序同sql，可以desc也可以asc，也支持组合排序。
+```json5
+{
+  "query": {
+    "match": {
+      "desc": "慕课网游戏"
+    }
+  },
+  "post_filter": {
+    "range": {
+      "money": {
+        "gt": 55.8,
+        "lte": 155.8
+      }
+    }
+  },
+  "sort": [
+    {
+      "age": "desc"
+    },
+    {
+      "money": "desc"
+    }
+  ]
+}
+```
+###### 对文本排序
+由于文本会被分词，所以往往要去做排序会报错，通常我们可以为这个字段增加额外的一个附属属性，类型为keyword，用于做排序。
+
+// 创建新的索引 POST /es_sort/_mapping
+```json5
+{
+  "properties": {
+    "id": {
+      "type": "long"
+    },
+    "nickname": {
+      "type": "text",
+      "analyzer": "ik_max_word",
+      "fields": {
+        "keyword": {
+          "type": "keyword"
+        }
+      }
+    }
+  }
+}
+```
+插入数据
+POST  /es_sort/_doc
+```json5
+{
+  "id": 1001,
+  "nickname": "美丽的风景"
+}
+{
+  "id": 1002,
+  "nickname": "漂亮的小姐姐"
+}
+{
+  "id": 1003,
+  "nickname": "飞翔的巨鹰"
+}
+{
+  "id": 1004,
+  "nickname": "完美的天空"
+}
+{
+  "id": 1005,
+  "nickname": "广阔的海域"
+}
+```
+```json5
+{
+  "sort": [
+    {
+      "nickname.keyword": "desc"
+    }
+  ]
+}
+```
+##### DSL搜索 - 高亮highlight
+高亮显示
+```json5
+{
+  "query": {
+    "match": {
+      "desc": "慕课网"
+    }
+  },
+  "highlight": {
+    "pre_tags": ["<tag>"],
+    "post_tags": ["</tag>"],
+    "fields": {
+      "desc": {}
+    }
+  }
+}
+```
+##### DSL扩展 - prefix 根据前缀去查询
+```json5
+{
+  "query": {
+    "prefix": {
+      "desc": "慕课网"
+    }
+  }
+}
+// head 可视化
+```
+##### DSL扩展 - fuzzy 模糊搜索
+模糊搜索，并不是指的sql的模糊搜索，而是用户在进行搜索的时候的打字错误现象，搜索引擎会自动纠正，然后尝试匹配索引库中的数据。
+```json5
+{
+  "query": {
+    "fuzzy": {
+      "desc": "慕客网"
+    }
+  }
+}
+// 详细 https://www.elastic.co/guide/cn/elasticsearch/guide/current/fuzzy-match-query.html
+```
+##### DSL扩展 - wildcard 占位符查询
+
+详见 https://www.elastic.co/guide/en/elasticsearch/reference/2.3/query-dsl-wildcard-query.html
