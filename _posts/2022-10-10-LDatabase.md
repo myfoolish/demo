@@ -2602,9 +2602,11 @@ DELETE  http://192.168.31.xx:9200/索引名
 - http://192.168.31.xx:9200/索引名 
 - http://192.168.31.xx:9200/_cat/indices    （查看所有）
 - http://192.168.31.xx:9200/_cat/indices?v  （显示列名）
+
 ### 查询索引
 - http://192.168.31.xx:9200/索引名/_search                         （查询所有）
 - http://192.168.31.xx:9200/索引名/_doc/_search                    （查询所有）
+
 #### 内置分词器
 * standard：默认分词，单词会被拆分，大小会转换为小写。
 * simple：按照非字母分词。大写转为小写。
@@ -2652,12 +2654,13 @@ vim custom.dic
 在 url 中拼接做为请求参数的查询称之为 QueryString
 - http://192.168.31.xx:9200/索引名/_search?q=字段名:内容             （单条件）
 - http://192.168.31.xx:9200/索引名/_search?q=字段名:内容&q=字段名:内容 （多条件）
-  - eg:_search?q=name:xw&q=age:25
+- eg:_search?q=name:xw&q=age:25
+
 #### DSL搜索
 QueryString用的很少，一旦参数复杂就难以构建，所以大多查询都会使用dsl来进行查询更好。DSL(Domain Specific Language 特定领域语言)基于JSON格式的数据查询查询更灵活，有利于复杂查询。
 
 POST /shop/_doc/_search
-##### DSL搜索 - 语法
+##### DSL搜索 - match
 ```json5
 // 查询
 {
@@ -2677,10 +2680,10 @@ POST /shop/_doc/_search
 }
 // 语法格式为一个json object，内容都key-value键值对，json可以嵌套。
 ```
-###### match 扩展
-**operator**: 
+**match 扩展 - operator**: 
   * or: 搜索内容分词后，只要存在一个词语匹配就展示结果
   * and: 搜索内容分词后，都要满足词语匹配
+
 ```json5
 {
   "query": {
@@ -2694,7 +2697,7 @@ POST /shop/_doc/_search
 }
 // 相当于select * from 表 where desc='xbox' or desc='游戏机'
 ```
-**minimum_should_match**: 最低匹配精度，至少有*分词后的词语个数* x 百分比，得出一个数据值取整。也能设置具体的数字，表示个数。
+**match 扩展 - minimum_should_match**: 最低匹配精度，至少有*分词后的词语个数* x 百分比，得出一个数据值取整。也能设置具体的数字，表示个数。
 
 eg: 当前属性设置为80，若一个查询分词后有8个，那么匹配度按照8 x 80% = 6.4，则desc中至少需要有6个词语匹配就展示；
 
@@ -2900,6 +2903,7 @@ post_filter元素是一个顶层元素，只会对搜索结果进行过滤。不
 * query: 根据用户搜索条件检索匹配记录
 * post_filter: 用于查询后，对结果数据的筛选
 * 不等式: gte: 大于等于、lte: 小于等于、gt: 大于、lt: 小于
+
 ```json5
 {
   "query": {
@@ -2981,7 +2985,7 @@ es的排序同sql，可以desc也可以asc，也支持组合排序。
 ###### 对文本排序
 由于文本会被分词，所以往往要去做排序会报错，通常我们可以为这个字段增加额外的一个附属属性，类型为keyword，用于做排序。
 
-// 创建新的索引 POST /es_sort/_mapping
+创建新的索引 POST /es_sort/_mapping
 ```json5
 {
   "properties": {
@@ -3034,7 +3038,6 @@ POST  /es_sort/_doc
 }
 ```
 ##### DSL搜索 - 高亮highlight
-高亮显示
 ```json5
 {
   "query": {
