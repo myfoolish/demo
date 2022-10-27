@@ -5,11 +5,11 @@ description: 这里是数据库（关系型数据库 MySQL、Oracle 和非关系
 categories:
 - Develop
 - 数据库
-tag: 
+  tag:
 - MySQL
 - Oracle
 - Redis
-description: 这里是 LDatabase（MySQL「主」、Oracle、...）
+  description: 这里是 LDatabase（MySQL「主」、Oracle、...）
 ---
 
 # 数据库
@@ -41,7 +41,7 @@ description: 这里是 LDatabase（MySQL「主」、Oracle、...）
 
 > 常用数据库：MYSQL、Oracle
 
- **这里主用 MySQL 数据库，MySQL 中可以有多个数据库，数据库是真正存储数据的地方**
+**这里主用 MySQL 数据库，MySQL 中可以有多个数据库，数据库是真正存储数据的地方**
 
 关系型数据库：表与表之间有关系，一对一、一对多、多对多
 非关系型数据库：表与表之间没关系
@@ -196,7 +196,7 @@ DROP DATABASE springboot;
 ```sql
 # 查看 MySQL 服务器中的所有的数据库: 
 SHOW DATABASES;
-# 查看正在使用的数据库: 
+# 查看正在使用的数据库:
 SELECT DATABASE();
 # 查看某个数据库的定义的信息：SHOW CREATE DATABASE 数据库名;
 SHOW CREATE DATABASE spring;
@@ -211,11 +211,11 @@ USE springboot;
 ```sql
 # 创建表
 # create table 表名
-# (
-#	 字段名 类型(长度) [约束],
-#	 字段名 类型(长度) [约束],
-#	 ...
-# );
+    # (
+    #	 字段名 类型(长度) [约束],
+    #	 字段名 类型(长度) [约束],
+    #	 ...
+    # );
 CREATE TABLE personal
 (
     id   INT PRIMARY KEY,
@@ -262,7 +262,7 @@ ALTER TABLE personal MODIFY `desc` VARCHAR(32) NOT NULL;
 # 修改个人描述字段，description VARCHAR(32)
 ALTER TABLE personal CHANGE `desc` `description` VARCHAR(32);
 
-# 删除列：ALTER TABLE 表名 DROP 列名;	
+# 删除列：ALTER TABLE 表名 DROP 列名;
 # 删除个人描述字段，description VARCHAR(32)
 ALTER TABLE personal DROP description;
 ```
@@ -311,7 +311,7 @@ DELETE FROM personal WHERE id=4;
 UPDATE personal SET name='测试' WHERE id=5;
 ```
 
-> 注意： 
+> 注意：
 >
 > - 列名的类型与修改的值要一致
 > - 修改值得时候不能超过最大长度
@@ -408,7 +408,7 @@ SELECT age ,COUNT(*) FROM personal GROUP BY age HAVING COUNT(*) > 1;
 
 ```sql
 # SELECT 字段1，字段2... FROM 表明 LIMIT M,N
-	# M: 整数，表示从第几条索引开始，计算方式 （当前页-1）*每页显示条数
+    # M: 整数，表示从第几条索引开始，计算方式 （当前页-1）*每页显示条数
 	# N: 整数，表示查询多少条数据
 #	例如数据共有30条，每页显示5条，第一页显示1-5条，第二页显示6-10条。
 # SELECT 字段1，字段2... FROM 表明 LIMIT 0,5
@@ -422,15 +422,15 @@ SELECT age ,COUNT(*) FROM personal GROUP BY age HAVING COUNT(*) > 1;
 表与表之间的关系
 
 - 一对一关系：（了解）在实际的开发中应用不多，因为一对一可以创建成一张表。
-  - 两种建表原则：
-    - 外键唯一：主表的主键和从表的外键（唯一），形成主外键关系，外键唯一 unique。
-    - 外键是主键：主表的主键和从表的主键，形成主外键关系。
+    - 两种建表原则：
+        - 外键唯一：主表的主键和从表的外键（唯一），形成主外键关系，外键唯一 unique。
+        - 外键是主键：主表的主键和从表的主键，形成主外键关系。
 - 一对多关系：
-  - 建表原则：在从表（多方）创建一个字段，字段作为外键指向主表（一方）的主键。
-  - 常见实例：客户和订单，分类和商品，部门和员工
+    - 建表原则：在从表（多方）创建一个字段，字段作为外键指向主表（一方）的主键。
+    - 常见实例：客户和订单，分类和商品，部门和员工
 - 多对多关系：
-  - 建表原则：需要创建第三张表，中间表中至少两个字段，这两个字段分别作为外键指向各自一方的主键。
-  - 常见实例：学生和课程、用户和角色
+    - 建表原则：需要创建第三张表，中间表中至少两个字段，这两个字段分别作为外键指向各自一方的主键。
+    - 常见实例：学生和课程、用户和角色
 
 一对多
 
@@ -466,7 +466,7 @@ CREATE TABLE products
     pname       VARCHAR(50),
     price       DOUBLE,
     flag        VARCHAR(2), #是否上架标记为：1表示上架、0表示下架
-    category_id VARCHAR(32),
+        category_id VARCHAR(32),
     CONSTRAINT products_fk FOREIGN KEY (category_id) REFERENCES category (cid)
 );
 # 订单表
@@ -591,14 +591,14 @@ from products p,
      (select cid
       from category
       where cname = '化妆品') c
- where p.category_id = c.cid;
+where p.category_id = c.cid;
 # 隐式内连接
 select p.*
 from products p,
      category c
 where p.category_id = c.cid
   and c.cname = '化妆品';
- 
+
 # 子查询——查询“化妆品”和“家电”两个分类上架商品详情
 select *
 from products
@@ -628,7 +628,7 @@ where p.category_id = c.cid;
 
 - 引用完整性：外键约束
 
-### 主键约束 (PRIMARY KEY) 
+### 主键约束 (PRIMARY KEY)
 
 数据库表中每条记录的唯一标识。
 
@@ -706,7 +706,7 @@ INSERT INTO personal (id, name) VALUES (NULL, '威');
 
 > 扩展：默认AUTO_INCREMENT 的开始值是 1，如果希望修改起始值，请使用下列 SQL 语法：
 >
-> ALTER TABLE personal AUTO_INCREMENT = 100;	
+> ALTER TABLE personal AUTO_INCREMENT = 100;
 
 ### 唯一约束
 
@@ -913,18 +913,18 @@ ALTER TABLE products DROP FOREIGN KEY products_fk;
 ```sql
 # 1、直接创建索引
 CREATE INDEX index_name ON table(column(length))
-# 2、修改表结构的方式添加索引
+    # 2、修改表结构的方式添加索引
 ALTER TABLE table_name ADD INDEX index_name ON (column(length))
 # 3、创建表的时候同时创建索引
 CREATE TABLE `table` (
-	`id` int(11) NOT NULL AUTO_INCREMENT ,
-	`title` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
-	`content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
-	`time` int(10) NULL DEFAULT NULL ,
-	PRIMARY KEY (`id`),
-  INDEX index_name (title(length))
+                         `id` int(11) NOT NULL AUTO_INCREMENT ,
+                         `title` char(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ,
+                         `content` text CHARACTER SET utf8 COLLATE utf8_general_ci NULL ,
+                         `time` int(10) NULL DEFAULT NULL ,
+                         PRIMARY KEY (`id`),
+                         INDEX index_name (title(length))
 )
-# 4、删除索引
+    # 4、删除索引
 DROP INDEX index_name ON table
 ```
 
@@ -1226,7 +1226,7 @@ select count(distinct left(email, 5)) / count(*) as col5, count(distinct left(em
 
 ![img](http://www.microsoft.com/china/MSDN/library/data/sqlserver/art/5wayfig01.gif)
 
-   加快使用 LEFT JOIN 的查询速度的一项技术涉及创建一个 TABLE 数据类型，插入第一个表（LEFT JOIN 左侧的表）中的所有行，然后使用第二个表中的值更新 TABLE 数据类型。此技术是一个两步的过程，但与标准的 LEFT JOIN 相比，可以节省大量时间。一个很好的规则是尝试各种不同的技术并记录每种技术所需的时间，直到获得用于您的应用程序的执行性能最佳的查询。
+加快使用 LEFT JOIN 的查询速度的一项技术涉及创建一个 TABLE 数据类型，插入第一个表（LEFT JOIN 左侧的表）中的所有行，然后使用第二个表中的值更新 TABLE 数据类型。此技术是一个两步的过程，但与标准的 LEFT JOIN 相比，可以节省大量时间。一个很好的规则是尝试各种不同的技术并记录每种技术所需的时间，直到获得用于您的应用程序的执行性能最佳的查询。
 
 测试查询的速度时，有必要多次运行此查询，然后取一个平均值。因为查询（或存储过程）可能会存储在 SQL Server 内存中的过程缓存中，因此第一次尝试耗费的时间好像稍长一些，而所有后续尝试耗费的时间都较短。另外，运行您的查询时，可能正在针对相同的表运行其他查询。当其他查询锁定和解锁这些表时，可能会导致您的查询要排队等待。例如，如果您进行查询时某人正在更新此表中的数据，则在更新提交时您的查询可能需要耗费更长时间来执行。
 
@@ -1244,18 +1244,18 @@ Union All：对两个结果集进行并集操作，包括重复行，不进行�
 CREATE DATABASE learningsql;
 
 CREATE TABLE table01(
-	id INT NOT NULL,
-	name VARCHAR(20) NOT NULL
+                        id INT NOT NULL,
+                        name VARCHAR(20) NOT NULL
 );
 CREATE TABLE table02(
-	id INT NOT NULL,
-	name VARCHAR(20) NOT NULL
+                        id INT NOT NULL,
+                        name VARCHAR(20) NOT NULL
 );
 
 INSERT INTO table01 VALUES (1,'姚羽');
 INSERT INTO table01 VALUES (2,'边兵兵');
 INSERT INTO table01 VALUES (3,'袁磊');
-  
+
 INSERT INTO table02 VALUES (1,'姚羽');
 INSERT INTO table02 VALUES (2,'柳春平');
 INSERT INTO table02 VALUES (3,'张永超');
@@ -1334,6 +1334,11 @@ InnoDB 的 redo log 是固定大小的，比如可以配置为一组 4 个文件
 ## 事务日志
 
 事务的隔离级别是通过锁实现的，而事务的原子性、一致性和持久性则是通过事务日志实现的
+
+```sql
+select k from t where id=1 lock in share mode;  -- 读锁（S锁，共享锁）
+select k from t where id=1 for update;          -- 写锁（X锁，排他锁）
+``` 
 
 ### redo
 
@@ -1419,303 +1424,303 @@ CREATE TABLE teacher
 
 # 插入测试数据
 insert into Student select 1,N'刘一',18,N'男' union all
- select 2,N'钱二',19,N'女' union all
- select 3,N'张三',17,N'男' union all
- select 4,N'李四',18,N'女' union all
- select 5,N'王五',17,N'男' union all
- select 6,N'赵六',19,N'女';
- 
- insert into Teacher select 1,N'叶平' union all
- select 2,N'贺高' union all
- select 3,N'杨艳' union all
- select 4,N'周磊';
- 
- insert into Course select 1,N'语文',1 union all
- select 2,N'数学',2 union all
- select 3,N'英语',3 union all
- select 4,N'物理',4;
- 
- insert into SC 
- select 1,1,56 union all 
- select 1,2,78 union all 
- select 1,3,67 union all 
- select 1,4,58 union all 
- select 2,1,79 union all 
- select 2,2,81 union all 
- select 2,3,92 union all 
- select 2,4,68 union all 
- select 3,1,91 union all 
- select 3,2,47 union all 
- select 3,3,88 union all 
- select 3,4,56 union all 
- select 4,2,88 union all 
- select 4,3,90 union all 
- select 4,4,93 union all 
- select 5,1,46 union all 
- select 5,3,78 union all 
- select 5,4,53 union all 
- select 6,1,35 union all 
- select 6,2,68 union all 
- select 6,4,71;
+                    select 2,N'钱二',19,N'女' union all
+                    select 3,N'张三',17,N'男' union all
+                    select 4,N'李四',18,N'女' union all
+                    select 5,N'王五',17,N'男' union all
+                    select 6,N'赵六',19,N'女';
+
+insert into Teacher select 1,N'叶平' union all
+select 2,N'贺高' union all
+select 3,N'杨艳' union all
+select 4,N'周磊';
+
+insert into Course select 1,N'语文',1 union all
+select 2,N'数学',2 union all
+select 3,N'英语',3 union all
+select 4,N'物理',4;
+
+insert into SC
+select 1,1,56 union all
+select 1,2,78 union all
+select 1,3,67 union all
+select 1,4,58 union all
+select 2,1,79 union all
+select 2,2,81 union all
+select 2,3,92 union all
+select 2,4,68 union all
+select 3,1,91 union all
+select 3,2,47 union all
+select 3,3,88 union all
+select 3,4,56 union all
+select 4,2,88 union all
+select 4,3,90 union all
+select 4,4,93 union all
+select 5,1,46 union all
+select 5,3,78 union all
+select 5,4,53 union all
+select 6,1,35 union all
+select 6,2,68 union all
+select 6,4,71;
 ```
 
 问题
 
 ```sql
-1、查询“001”课程比“002”课程成绩高的所有学生的学号； 
-  select a.S# from (select s#,score from SC where C#='001') a,(select s#,score 
-  from SC where C#='002') b 
-  where a.score>b.score and a.s#=b.s#; 
-2、查询平均成绩大于60分的同学的学号和平均成绩； 
-    select S#,avg(score) 
-    from sc 
-    group by S# having avg(score) >60; 
-3、查询所有同学的学号、姓名、选课数、总成绩； 
-  select Student.S#,Student.Sname,count(SC.C#),sum(score) 
-  from Student left Outer join SC on Student.S#=SC.S# 
-  group by Student.S#,Sname 
-4、查询姓“李”的老师的个数； 
-  select count(distinct(Tname)) 
-  from Teacher 
-  where Tname like '李%'; 
-5、查询没学过“叶平”老师课的同学的学号、姓名； 
-    select Student.S#,Student.Sname 
-    from Student  
-    where S# not in (select distinct( SC.S#) from SC,Course,Teacher where  SC.C#=Course.C# and Teacher.T#=Course.T# and Teacher.Tname='叶平'); 
-6、查询学过“001”并且也学过编号“002”课程的同学的学号、姓名； 
-  select Student.S#,Student.Sname from Student,SC where Student.S#=SC.S# and SC.C#='001'and exists( Select * from SC as SC_2 where SC_2.S#=SC.S# and SC_2.C#='002'); 
-7、查询学过“叶平”老师所教的所有课的同学的学号、姓名； 
-  select S#,Sname 
-  from Student 
-  where S# in (select S# from SC ,Course ,Teacher where SC.C#=Course.C# and Teacher.T#=Course.T# and Teacher.Tname='叶平' group by S# having count(SC.C#)=(select count(C#) from Course,Teacher  where Teacher.T#=Course.T# and Tname='叶平')); 
-8、查询课程编号“002”的成绩比课程编号“001”课程低的所有同学的学号、姓名； 
-  Select S#,Sname from (select Student.S#,Student.Sname,score ,(select score from SC SC_2 where SC_2.S#=Student.S# and SC_2.C#='002') score2 
-  from Student,SC where Student.S#=SC.S# and C#='001') S_2 where score2 <score; 
-9、查询所有课程成绩小于60分的同学的学号、姓名； 
-  select S#,Sname 
-  from Student 
-  where S# not in (select S.S# from Student AS S,SC where S.S#=SC.S# and score>60); 
-10、查询没有学全所有课的同学的学号、姓名； 
-    select Student.S#,Student.Sname 
-    from Student,SC 
-    where Student.S#=SC.S# group by  Student.S#,Student.Sname having count(C#) <(select count(C#) from Course); 
-11、查询至少有一门课与学号为“1001”的同学所学相同的同学的学号和姓名； 
-    select distinct S#,Sname from Student,SC where Student.S#=SC.S# and SC.C# in (select C# from SC where S#='1001'); 
-12、查询至少学过学号为“001”同学所有一门课的其他同学学号和姓名； 
-    select distinct SC.S#,Sname 
-    from Student,SC 
-    where Student.S#=SC.S# and C# in (select C# from SC where S#='001'); 
-13、把“SC”表中“叶平”老师教的课的成绩都更改为此课程的平均成绩； 
-    update SC set score=(select avg(SC_2.score) 
-    from SC SC_2 
-    where SC_2.C#=SC.C# ) from Course,Teacher where Course.C#=SC.C# and Course.T#=Teacher.T# and Teacher.Tname='叶平'); 
-14、查询和“1002”号的同学学习的课程完全相同的其他同学学号和姓名； 
-    select S# from SC where C# in (select C# from SC where S#='1002') 
-    group by S# having count(*)=(select count(*) from SC where S#='1002'); 
+1、查询“001”课程比“002”课程成绩高的所有学生的学号；
+select a.S# from (select s#,score from SC where C#='001') a,(select s#,score
+                                                             from SC where C#='002') b
+where a.score>b.score and a.s#=b.s#;
+2、查询平均成绩大于60分的同学的学号和平均成绩；
+select S#,avg(score)
+from sc
+group by S# having avg(score) >60;
+3、查询所有同学的学号、姓名、选课数、总成绩；
+select Student.S#,Student.Sname,count(SC.C#),sum(score)
+from Student left Outer join SC on Student.S#=SC.S#
+group by Student.S#,Sname
+    4、查询姓“李”的老师的个数；
+select count(distinct(Tname))
+from Teacher
+where Tname like '李%';
+5、查询没学过“叶平”老师课的同学的学号、姓名；
+select Student.S#,Student.Sname
+from Student
+where S# not in (select distinct( SC.S#) from SC,Course,Teacher where  SC.C#=Course.C# and Teacher.T#=Course.T# and Teacher.Tname='叶平');
+6、查询学过“001”并且也学过编号“002”课程的同学的学号、姓名；
+select Student.S#,Student.Sname from Student,SC where Student.S#=SC.S# and SC.C#='001'and exists( Select * from SC as SC_2 where SC_2.S#=SC.S# and SC_2.C#='002');
+7、查询学过“叶平”老师所教的所有课的同学的学号、姓名；
+select S#,Sname
+from Student
+where S# in (select S# from SC ,Course ,Teacher where SC.C#=Course.C# and Teacher.T#=Course.T# and Teacher.Tname='叶平' group by S# having count(SC.C#)=(select count(C#) from Course,Teacher  where Teacher.T#=Course.T# and Tname='叶平'));
+8、查询课程编号“002”的成绩比课程编号“001”课程低的所有同学的学号、姓名；
+Select S#,Sname from (select Student.S#,Student.Sname,score ,(select score from SC SC_2 where SC_2.S#=Student.S# and SC_2.C#='002') score2
+                      from Student,SC where Student.S#=SC.S# and C#='001') S_2 where score2 <score;
+9、查询所有课程成绩小于60分的同学的学号、姓名；
+select S#,Sname
+from Student
+where S# not in (select S.S# from Student AS S,SC where S.S#=SC.S# and score>60);
+10、查询没有学全所有课的同学的学号、姓名；
+select Student.S#,Student.Sname
+from Student,SC
+where Student.S#=SC.S# group by  Student.S#,Student.Sname having count(C#) <(select count(C#) from Course);
+11、查询至少有一门课与学号为“1001”的同学所学相同的同学的学号和姓名；
+select distinct S#,Sname from Student,SC where Student.S#=SC.S# and SC.C# in (select C# from SC where S#='1001');
+12、查询至少学过学号为“001”同学所有一门课的其他同学学号和姓名；
+select distinct SC.S#,Sname
+from Student,SC
+where Student.S#=SC.S# and C# in (select C# from SC where S#='001');
+13、把“SC”表中“叶平”老师教的课的成绩都更改为此课程的平均成绩；
+update SC set score=(select avg(SC_2.score)
+                     from SC SC_2
+                     where SC_2.C#=SC.C# ) from Course,Teacher where Course.C#=SC.C# and Course.T#=Teacher.T# and Teacher.Tname='叶平');
+14、查询和“1002”号的同学学习的课程完全相同的其他同学学号和姓名；
+select S# from SC where C# in (select C# from SC where S#='1002')
+group by S# having count(*)=(select count(*) from SC where S#='1002');
 15、删除学习“叶平”老师课的SC表记录； 
     Delect SC 
     from course ,Teacher  
-    where Course.C#=SC.C# and Course.T#= Teacher.T# and Tname='叶平'; 
+    where Course.C#=SC.C# and Course.T#= Teacher.T# and Tname='叶平';
 16、向SC表中插入一些记录，这些记录要求符合以下条件：没有上过编号“003”课程的同学学号、2、 
     号课的平均成绩； 
-    Insert SC select S#,'002',(Select avg(score) 
-    from SC where C#='002') from Student where S# not in (Select S# from SC where C#='002'); 
-17、按平均成绩从高到低显示所有学生的“数据库”、“企业管理”、“英语”三门的课程成绩，按如下形式显示： 学生ID,,数据库,企业管理,英语,有效课程数,有效平均分 
-    SELECT S# as 学生ID 
-        ,(SELECT score FROM SC WHERE SC.S#=t.S# AND C#='004') AS 数据库 
-        ,(SELECT score FROM SC WHERE SC.S#=t.S# AND C#='001') AS 企业管理 
-        ,(SELECT score FROM SC WHERE SC.S#=t.S# AND C#='006') AS 英语 
-        ,COUNT(*) AS 有效课程数, AVG(t.score) AS 平均成绩 
-    FROM SC AS t 
-    GROUP BY S# 
-    ORDER BY avg(t.score)  
-18、查询各科成绩最高和最低的分：以如下形式显示：课程ID，最高分，最低分 
-    SELECT L.C# As 课程ID,L.score AS 最高分,R.score AS 最低分 
-    FROM SC L ,SC AS R 
-    WHERE L.C# = R.C# and 
-        L.score = (SELECT MAX(IL.score) 
-                      FROM SC AS IL,Student AS IM 
-                      WHERE L.C# = IL.C# and IM.S#=IL.S# 
-                      GROUP BY IL.C#) 
-        AND 
-        R.Score = (SELECT MIN(IR.score) 
-                      FROM SC AS IR 
-                      WHERE R.C# = IR.C# 
-                  GROUP BY IR.C# 
-                    ); 
+    Insert SC select S#,'002',(Select avg(score)
+                               from SC where C#='002') from Student where S# not in (Select S# from SC where C#='002');
+17、按平均成绩从高到低显示所有学生的“数据库”、“企业管理”、“英语”三门的课程成绩，按如下形式显示： 学生ID,,数据库,企业管理,英语,有效课程数,有效平均分
+SELECT S# as 学生ID
+     ,(SELECT score FROM SC WHERE SC.S#=t.S# AND C#='004') AS 数据库
+     ,(SELECT score FROM SC WHERE SC.S#=t.S# AND C#='001') AS 企业管理
+     ,(SELECT score FROM SC WHERE SC.S#=t.S# AND C#='006') AS 英语
+     ,COUNT(*) AS 有效课程数, AVG(t.score) AS 平均成绩
+FROM SC AS t
+GROUP BY S#
+ORDER BY avg(t.score)
+    18、查询各科成绩最高和最低的分：以如下形式显示：课程ID，最高分，最低分
+SELECT L.C# As 课程ID,L.score AS 最高分,R.score AS 最低分
+FROM SC L ,SC AS R
+WHERE L.C# = R.C# and
+        L.score = (SELECT MAX(IL.score)
+                   FROM SC AS IL,Student AS IM
+                   WHERE L.C# = IL.C# and IM.S#=IL.S#
+                   GROUP BY IL.C#)
+  AND
+        R.Score = (SELECT MIN(IR.score)
+                   FROM SC AS IR
+                   WHERE R.C# = IR.C#
+                   GROUP BY IR.C#
+    );
 自己写的:select c# ,max(score)as 最高分 ,min(score) as 最低分 from dbo.sc  group by c#
-19、按各科平均成绩从低到高和及格率的百分数从高到低顺序 
-    SELECT t.C# AS 课程号,max(course.Cname)AS 课程名,isnull(AVG(score),0) AS 平均成绩 
-        ,100 * SUM(CASE WHEN  isnull(score,0)>=60 THEN 1 ELSE 0 END)/COUNT(*) AS 及格百分数 
-    FROM SC T,Course 
-    where t.C#=course.C# 
-    GROUP BY t.C# 
-    ORDER BY 100 * SUM(CASE WHEN  isnull(score,0)>=60 THEN 1 ELSE 0 END)/COUNT(*) DESC 
-20、查询如下课程平均成绩和及格率的百分数(用"1行"显示): 企业管理（001），马克思（002），OO&UML （003），数据库（004） 
-    SELECT SUM(CASE WHEN C# ='001' THEN score ELSE 0 END)/SUM(CASE C# WHEN '001' THEN 1 ELSE 0 END) AS 企业管理平均分 
-        ,100 * SUM(CASE WHEN C# = '001' AND score >= 60 THEN 1 ELSE 0 END)/SUM(CASE WHEN C# = '001' THEN 1 ELSE 0 END) AS 企业管理及格百分数 
-        ,SUM(CASE WHEN C# = '002' THEN score ELSE 0 END)/SUM(CASE C# WHEN '002' THEN 1 ELSE 0 END) AS 马克思平均分 
-        ,100 * SUM(CASE WHEN C# = '002' AND score >= 60 THEN 1 ELSE 0 END)/SUM(CASE WHEN C# = '002' THEN 1 ELSE 0 END) AS 马克思及格百分数 
-        ,SUM(CASE WHEN C# = '003' THEN score ELSE 0 END)/SUM(CASE C# WHEN '003' THEN 1 ELSE 0 END) AS UML平均分 
-        ,100 * SUM(CASE WHEN C# = '003' AND score >= 60 THEN 1 ELSE 0 END)/SUM(CASE WHEN C# = '003' THEN 1 ELSE 0 END) AS UML及格百分数 
-        ,SUM(CASE WHEN C# = '004' THEN score ELSE 0 END)/SUM(CASE C# WHEN '004' THEN 1 ELSE 0 END) AS 数据库平均分 
-        ,100 * SUM(CASE WHEN C# = '004' AND score >= 60 THEN 1 ELSE 0 END)/SUM(CASE WHEN C# = '004' THEN 1 ELSE 0 END) AS 数据库及格百分数 
-  FROM SC 
+    19、按各科平均成绩从低到高和及格率的百分数从高到低顺序
+SELECT t.C# AS 课程号,max(course.Cname)AS 课程名,isnull(AVG(score),0) AS 平均成绩
+     ,100 * SUM(CASE WHEN  isnull(score,0)>=60 THEN 1 ELSE 0 END)/COUNT(*) AS 及格百分数
+FROM SC T,Course
+where t.C#=course.C#
+GROUP BY t.C#
+ORDER BY 100 * SUM(CASE WHEN  isnull(score,0)>=60 THEN 1 ELSE 0 END)/COUNT(*) DESC
+    20、查询如下课程平均成绩和及格率的百分数(用"1行"显示): 企业管理（001），马克思（002），OO&UML （003），数据库（004）
+SELECT SUM(CASE WHEN C# ='001' THEN score ELSE 0 END)/SUM(CASE C# WHEN '001' THEN 1 ELSE 0 END) AS 企业管理平均分
+     ,100 * SUM(CASE WHEN C# = '001' AND score >= 60 THEN 1 ELSE 0 END)/SUM(CASE WHEN C# = '001' THEN 1 ELSE 0 END) AS 企业管理及格百分数
+     ,SUM(CASE WHEN C# = '002' THEN score ELSE 0 END)/SUM(CASE C# WHEN '002' THEN 1 ELSE 0 END) AS 马克思平均分
+     ,100 * SUM(CASE WHEN C# = '002' AND score >= 60 THEN 1 ELSE 0 END)/SUM(CASE WHEN C# = '002' THEN 1 ELSE 0 END) AS 马克思及格百分数
+     ,SUM(CASE WHEN C# = '003' THEN score ELSE 0 END)/SUM(CASE C# WHEN '003' THEN 1 ELSE 0 END) AS UML平均分
+     ,100 * SUM(CASE WHEN C# = '003' AND score >= 60 THEN 1 ELSE 0 END)/SUM(CASE WHEN C# = '003' THEN 1 ELSE 0 END) AS UML及格百分数
+     ,SUM(CASE WHEN C# = '004' THEN score ELSE 0 END)/SUM(CASE C# WHEN '004' THEN 1 ELSE 0 END) AS 数据库平均分
+     ,100 * SUM(CASE WHEN C# = '004' AND score >= 60 THEN 1 ELSE 0 END)/SUM(CASE WHEN C# = '004' THEN 1 ELSE 0 END) AS 数据库及格百分数
+FROM SC
 
-21、查询不同老师所教不同课程平均分从高到低显示 
-  SELECT max(Z.T#) AS 教师ID,MAX(Z.Tname) AS 教师姓名,C.C# AS 课程ＩＤ,MAX(C.Cname) AS 课程名称,AVG(Score) AS 平均成绩 
-    FROM SC AS T,Course AS C ,Teacher AS Z 
-    where T.C#=C.C# and C.T#=Z.T# 
-  GROUP BY C.C# 
-  ORDER BY AVG(Score) DESC 
-22、查询如下课程成绩第 3 名到第 6 名的学生成绩单：企业管理（001），马克思（002），UML （003），数据库（004） 
-    [学生ID],[学生姓名],企业管理,马克思,UML,数据库,平均成绩 
-    SELECT  DISTINCT top 3 
-      SC.S# As 学生学号, 
-        Student.Sname AS 学生姓名 , 
-      T1.score AS 企业管理, 
-      T2.score AS 马克思, 
-      T3.score AS UML, 
-      T4.score AS 数据库, 
-      ISNULL(T1.score,0) + ISNULL(T2.score,0) + ISNULL(T3.score,0) + ISNULL(T4.score,0) as 总分 
-      FROM Student,SC  LEFT JOIN SC AS T1 
-                      ON SC.S# = T1.S# AND T1.C# = '001' 
-            LEFT JOIN SC AS T2 
-                      ON SC.S# = T2.S# AND T2.C# = '002' 
-            LEFT JOIN SC AS T3 
-                      ON SC.S# = T3.S# AND T3.C# = '003' 
-            LEFT JOIN SC AS T4 
-                      ON SC.S# = T4.S# AND T4.C# = '004' 
-      WHERE student.S#=SC.S# and 
-      ISNULL(T1.score,0) + ISNULL(T2.score,0) + ISNULL(T3.score,0) + ISNULL(T4.score,0) 
-      NOT IN 
-      (SELECT 
-            DISTINCT 
-            TOP 15 WITH TIES 
-            ISNULL(T1.score,0) + ISNULL(T2.score,0) + ISNULL(T3.score,0) + ISNULL(T4.score,0) 
-      FROM sc 
-            LEFT JOIN sc AS T1 
-                      ON sc.S# = T1.S# AND T1.C# = 'k1' 
-            LEFT JOIN sc AS T2 
-                      ON sc.S# = T2.S# AND T2.C# = 'k2' 
-            LEFT JOIN sc AS T3 
-                      ON sc.S# = T3.S# AND T3.C# = 'k3' 
-            LEFT JOIN sc AS T4 
-                      ON sc.S# = T4.S# AND T4.C# = 'k4' 
-      ORDER BY ISNULL(T1.score,0) + ISNULL(T2.score,0) + ISNULL(T3.score,0) + ISNULL(T4.score,0) DESC); 
+    21、查询不同老师所教不同课程平均分从高到低显示
+SELECT max(Z.T#) AS 教师ID,MAX(Z.Tname) AS 教师姓名,C.C# AS 课程ＩＤ,MAX(C.Cname) AS 课程名称,AVG(Score) AS 平均成绩
+FROM SC AS T,Course AS C ,Teacher AS Z
+where T.C#=C.C# and C.T#=Z.T#
+GROUP BY C.C#
+ORDER BY AVG(Score) DESC
+    22、查询如下课程成绩第 3 名到第 6 名的学生成绩单：企业管理（001），马克思（002），UML （003），数据库（004） 
+    [学生ID],[学生姓名],企业管理,马克思,UML,数据库,平均成绩
+SELECT  DISTINCT top 3 
+      SC.S# As 学生学号,
+        Student.Sname AS 学生姓名 ,
+                 T1.score AS 企业管理,
+                 T2.score AS 马克思,
+                 T3.score AS UML,
+                 T4.score AS 数据库,
+                 ISNULL(T1.score,0) + ISNULL(T2.score,0) + ISNULL(T3.score,0) + ISNULL(T4.score,0) as 总分
+FROM Student,SC  LEFT JOIN SC AS T1
+                           ON SC.S# = T1.S# AND T1.C# = '001'
+                 LEFT JOIN SC AS T2
+                           ON SC.S# = T2.S# AND T2.C# = '002'
+                 LEFT JOIN SC AS T3
+                           ON SC.S# = T3.S# AND T3.C# = '003'
+                 LEFT JOIN SC AS T4
+                           ON SC.S# = T4.S# AND T4.C# = '004'
+WHERE student.S#=SC.S# and
+            ISNULL(T1.score,0) + ISNULL(T2.score,0) + ISNULL(T3.score,0) + ISNULL(T4.score,0)
+        NOT IN
+            (SELECT
+                 DISTINCT
+                 TOP 15 WITH TIES
+    ISNULL(T1.score,0) + ISNULL(T2.score,0) + ISNULL(T3.score,0) + ISNULL(T4.score,0)
+FROM sc
+    LEFT JOIN sc AS T1
+ON sc.S# = T1.S# AND T1.C# = 'k1'
+    LEFT JOIN sc AS T2
+    ON sc.S# = T2.S# AND T2.C# = 'k2'
+    LEFT JOIN sc AS T3
+    ON sc.S# = T3.S# AND T3.C# = 'k3'
+    LEFT JOIN sc AS T4
+    ON sc.S# = T4.S# AND T4.C# = 'k4'
+ORDER BY ISNULL(T1.score,0) + ISNULL(T2.score,0) + ISNULL(T3.score,0) + ISNULL(T4.score,0) DESC);
 
-23、统计列印各科成绩,各分数段人数:课程ID,课程名称,[100-85],[85-70],[70-60],[ <60] 
-    SELECT SC.C# as 课程ID, Cname as 课程名称 
-        ,SUM(CASE WHEN score BETWEEN 85 AND 100 THEN 1 ELSE 0 END) AS [100 - 85] 
+23、统计列印各科成绩,各分数段人数:课程ID,课程名称,[100-85],[85-70],[70-60],[ <60]
+SELECT SC.C# as 课程ID, Cname as 课程名称
+     ,SUM(CASE WHEN score BETWEEN 85 AND 100 THEN 1 ELSE 0 END) AS [100 - 85] 
         ,SUM(CASE WHEN score BETWEEN 70 AND 85 THEN 1 ELSE 0 END) AS [85 - 70] 
         ,SUM(CASE WHEN score BETWEEN 60 AND 70 THEN 1 ELSE 0 END) AS [70 - 60] 
-        ,SUM(CASE WHEN score < 60 THEN 1 ELSE 0 END) AS [60 -] 
-    FROM SC,Course 
-    where SC.C#=Course.C# 
-    GROUP BY SC.C#,Cname; 
+        ,SUM(CASE WHEN score < 60 THEN 1 ELSE 0 END) AS [60 -]
+FROM SC,Course
+where SC.C#=Course.C#
+GROUP BY SC.C#,Cname;
 
-24、查询学生平均成绩及其名次 
-      SELECT 1+(SELECT COUNT( distinct 平均成绩) 
-              FROM (SELECT S#,AVG(score) AS 平均成绩 
-                      FROM SC 
-                  GROUP BY S# 
-                  ) AS T1 
-            WHERE 平均成绩 > T2.平均成绩) as 名次, 
-      S# as 学生学号,平均成绩 
-    FROM (SELECT S#,AVG(score) 平均成绩 
-            FROM SC 
-        GROUP BY S# 
-        ) AS T2 
-    ORDER BY 平均成绩 desc; 
-  
-25、查询各科成绩前三名的记录:(不考虑成绩并列情况) 
-      SELECT t1.S# as 学生ID,t1.C# as 课程ID,Score as 分数 
-      FROM SC t1 
-      WHERE score IN (SELECT TOP 3 score 
-              FROM SC 
-              WHERE t1.C#= C# 
-            ORDER BY score DESC 
-              ) 
-      ORDER BY t1.C#; 
-26、查询每门课程被选修的学生数 
-  select c#,count(S#) from sc group by C#; 
-27、查询出只选修了一门课程的全部学生的学号和姓名 
-  select SC.S#,Student.Sname,count(C#) AS 选课数 
-  from SC ,Student 
-  where SC.S#=Student.S# group by SC.S# ,Student.Sname having count(C#)=1; 
-28、查询男生、女生人数 
-    Select count(Ssex) as 男生人数 from Student group by Ssex having Ssex='男'; 
-    Select count(Ssex) as 女生人数 from Student group by Ssex having Ssex='女'； 
-29、查询姓“张”的学生名单 
-    SELECT Sname FROM Student WHERE Sname like '张%'; 
-30、查询同名同性学生名单，并统计同名人数 
-  select Sname,count(*) from Student group by Sname having  count(*)>1;; 
-31、1981年出生的学生名单(注：Student表中Sage列的类型是datetime) 
-    select Sname,  CONVERT(char (11),DATEPART(year,Sage)) as age 
-    from student 
-    where  CONVERT(char(11),DATEPART(year,Sage))='1981'; 
-32、查询每门课程的平均成绩，结果按平均成绩升序排列，平均成绩相同时，按课程号降序排列 
-    Select C#,Avg(score) from SC group by C# order by Avg(score),C# DESC ; 
-33、查询平均成绩大于85的所有学生的学号、姓名和平均成绩 
-    select Sname,SC.S# ,avg(score) 
-    from Student,SC 
-    where Student.S#=SC.S# group by SC.S#,Sname having    avg(score)>85; 
-34、查询课程名称为“数据库”，且分数低于60的学生姓名和分数 
-    Select Sname,isnull(score,0) 
-    from Student,SC,Course 
-    where SC.S#=Student.S# and SC.C#=Course.C# and  Course.Cname='数据库'and score <60; 
-35、查询所有学生的选课情况； 
-    SELECT SC.S#,SC.C#,Sname,Cname 
-    FROM SC,Student,Course 
-    where SC.S#=Student.S# and SC.C#=Course.C# ; 
-36、查询任何一门课程成绩在70分以上的姓名、课程名称和分数； 
-    SELECT  distinct student.S#,student.Sname,SC.C#,SC.score 
-    FROM student,Sc 
-    WHERE SC.score>=70 AND SC.S#=student.S#; 
-37、查询不及格的课程，并按课程号从大到小排列 
-    select c# from sc where scor e <60 order by C# ; 
-38、查询课程编号为003且课程成绩在80分以上的学生的学号和姓名； 
-    select SC.S#,Student.Sname from SC,Student where SC.S#=Student.S# and Score>80 and C#='003'; 
-39、求选了课程的学生人数 
-    select count(*) from sc; 
-40、查询选修“叶平”老师所授课程的学生中，成绩最高的学生姓名及其成绩 
-    select Student.Sname,score 
-    from Student,SC,Course C,Teacher 
-    where Student.S#=SC.S# and SC.C#=C.C# and C.T#=Teacher.T# and Teacher.Tname='叶平' and SC.score=(select max(score)from SC where C#=C.C# ); 
-41、查询各个课程及相应的选修人数 
-    select count(*) from sc group by C#; 
-42、查询不同课程成绩相同的学生的学号、课程号、学生成绩 
-  select distinct  A.S#,B.score from SC A  ,SC B where A.Score=B.Score and A.C# <>B.C# ; 
-43、查询每门功成绩最好的前两名 
-    SELECT t1.S# as 学生ID,t1.C# as 课程ID,Score as 分数 
-      FROM SC t1 
-      WHERE score IN (SELECT TOP 2 score 
-              FROM SC 
-              WHERE t1.C#= C# 
-            ORDER BY score DESC 
-              ) 
-      ORDER BY t1.C#; 
-44、统计每门课程的学生选修人数（超过10人的课程才统计）。要求输出课程号和选修人数，查询结果按人数降序排列，查询结果按人数降序排列，若人数相同，按课程号升序排列  
-    select  C# as 课程号,count(*) as 人数 
-    from  sc  
-    group  by  C# 
-    order  by  count(*) desc,c#  
-45、检索至少选修两门课程的学生学号 
-    select  S#  
-    from  sc  
-    group  by  s# 
-    having  count(*)  >  =  2 
-46、查询全部学生都选修的课程的课程号和课程名 
-    select  C#,Cname  
-    from  Course  
-    where  C#  in  (select  c#  from  sc group  by  c#)  
-47、查询没学过“叶平”老师讲授的任一门课程的学生姓名 
-    select Sname from Student where S# not in (select S# from Course,Teacher,SC where Course.T#=Teacher.T# and SC.C#=course.C# and Tname='叶平'); 
-48、查询两门以上不及格课程的同学的学号及其平均成绩 
-    select S#,avg(isnull(score,0)) from SC where S# in (select S# from SC where score <60 group by S# having count(*)>2)group by S#; 
-49、检索“004”课程分数小于60，按分数降序排列的同学学号 
-    select S# from SC where C#='004'and score <60 order by score desc; 
-50、删除“002”同学的“001”课程的成绩 
+24、查询学生平均成绩及其名次
+SELECT 1+(SELECT COUNT( distinct 平均成绩)
+          FROM (SELECT S#,AVG(score) AS 平均成绩
+                FROM SC
+                GROUP BY S#
+               ) AS T1
+          WHERE 平均成绩 > T2.平均成绩) as 名次,
+       S# as 学生学号,平均成绩
+FROM (SELECT S#,AVG(score) 平均成绩
+      FROM SC
+      GROUP BY S#
+     ) AS T2
+ORDER BY 平均成绩 desc;
+
+25、查询各科成绩前三名的记录:(不考虑成绩并列情况)
+SELECT t1.S# as 学生ID,t1.C# as 课程ID,Score as 分数
+FROM SC t1
+WHERE score IN (SELECT TOP 3 score
+                FROM SC
+                WHERE t1.C#= C#
+                ORDER BY score DESC
+)
+ORDER BY t1.C#;
+26、查询每门课程被选修的学生数
+select c#,count(S#) from sc group by C#;
+27、查询出只选修了一门课程的全部学生的学号和姓名
+select SC.S#,Student.Sname,count(C#) AS 选课数
+from SC ,Student
+where SC.S#=Student.S# group by SC.S# ,Student.Sname having count(C#)=1;
+28、查询男生、女生人数
+Select count(Ssex) as 男生人数 from Student group by Ssex having Ssex='男';
+Select count(Ssex) as 女生人数 from Student group by Ssex having Ssex='女'；
+    29、查询姓“张”的学生名单
+SELECT Sname FROM Student WHERE Sname like '张%';
+30、查询同名同性学生名单，并统计同名人数
+select Sname,count(*) from Student group by Sname having  count(*)>1;;
+31、1981年出生的学生名单(注：Student表中Sage列的类型是datetime)
+select Sname,  CONVERT(char (11),DATEPART(year,Sage)) as age
+from student
+where  CONVERT(char(11),DATEPART(year,Sage))='1981';
+32、查询每门课程的平均成绩，结果按平均成绩升序排列，平均成绩相同时，按课程号降序排列
+Select C#,Avg(score) from SC group by C# order by Avg(score),C# DESC ;
+33、查询平均成绩大于85的所有学生的学号、姓名和平均成绩
+select Sname,SC.S# ,avg(score)
+from Student,SC
+where Student.S#=SC.S# group by SC.S#,Sname having    avg(score)>85;
+34、查询课程名称为“数据库”，且分数低于60的学生姓名和分数
+Select Sname,isnull(score,0)
+from Student,SC,Course
+where SC.S#=Student.S# and SC.C#=Course.C# and  Course.Cname='数据库'and score <60;
+35、查询所有学生的选课情况；
+SELECT SC.S#,SC.C#,Sname,Cname
+FROM SC,Student,Course
+where SC.S#=Student.S# and SC.C#=Course.C# ;
+36、查询任何一门课程成绩在70分以上的姓名、课程名称和分数；
+SELECT  distinct student.S#,student.Sname,SC.C#,SC.score
+FROM student,Sc
+WHERE SC.score>=70 AND SC.S#=student.S#;
+37、查询不及格的课程，并按课程号从大到小排列
+select c# from sc where scor e <60 order by C# ;
+38、查询课程编号为003且课程成绩在80分以上的学生的学号和姓名；
+select SC.S#,Student.Sname from SC,Student where SC.S#=Student.S# and Score>80 and C#='003';
+39、求选了课程的学生人数
+select count(*) from sc;
+40、查询选修“叶平”老师所授课程的学生中，成绩最高的学生姓名及其成绩
+select Student.Sname,score
+from Student,SC,Course C,Teacher
+where Student.S#=SC.S# and SC.C#=C.C# and C.T#=Teacher.T# and Teacher.Tname='叶平' and SC.score=(select max(score)from SC where C#=C.C# );
+41、查询各个课程及相应的选修人数
+select count(*) from sc group by C#;
+42、查询不同课程成绩相同的学生的学号、课程号、学生成绩
+select distinct  A.S#,B.score from SC A  ,SC B where A.Score=B.Score and A.C# <>B.C# ;
+43、查询每门功成绩最好的前两名
+SELECT t1.S# as 学生ID,t1.C# as 课程ID,Score as 分数
+FROM SC t1
+WHERE score IN (SELECT TOP 2 score
+                FROM SC
+                WHERE t1.C#= C#
+                ORDER BY score DESC
+)
+ORDER BY t1.C#;
+44、统计每门课程的学生选修人数（超过10人的课程才统计）。要求输出课程号和选修人数，查询结果按人数降序排列，查询结果按人数降序排列，若人数相同，按课程号升序排列
+select  C# as 课程号,count(*) as 人数
+from  sc
+group  by  C#
+order  by  count(*) desc,c#
+    45、检索至少选修两门课程的学生学号
+select  S#
+from  sc
+group  by  s#
+having  count(*)  >  =  2
+    46、查询全部学生都选修的课程的课程号和课程名
+select  C#,Cname
+from  Course
+where  C#  in  (select  c#  from  sc group  by  c#)
+    47、查询没学过“叶平”老师讲授的任一门课程的学生姓名
+select Sname from Student where S# not in (select S# from Course,Teacher,SC where Course.T#=Teacher.T# and SC.C#=course.C# and Tname='叶平');
+48、查询两门以上不及格课程的同学的学号及其平均成绩
+select S#,avg(isnull(score,0)) from SC where S# in (select S# from SC where score <60 group by S# having count(*)>2)group by S#;
+49、检索“004”课程分数小于60，按分数降序排列的同学学号
+select S# from SC where C#='004'and score <60 order by score desc;
+50、删除“002”同学的“001”课程的成绩
 delete from Sc where S#='001'and C#='001'; 
 ```
 
@@ -1739,63 +1744,63 @@ delete from Sc where S#='001'and C#='001';
 1. 写出建立BORROW表的SQL语句，要求定义主码完整性约束和引用完整性约束
 --实现代码：
 CREATE TABLE BORROW(
-    CNO int FOREIGN KEY REFERENCES CARD(CNO),
-    BNO int FOREIGN KEY REFERENCES BOOKS(BNO),
-    RDATE datetime,
-    PRIMARY KEY(CNO,BNO)) 
+                       CNO int FOREIGN KEY REFERENCES CARD(CNO),
+                       BNO int FOREIGN KEY REFERENCES BOOKS(BNO),
+                       RDATE datetime,
+                       PRIMARY KEY(CNO,BNO))
 
-2. 找出借书超过5本的读者,输出借书卡号及所借图书册数
+    2. 找出借书超过5本的读者,输出借书卡号及所借图书册数
 --实现代码：
 SELECT CNO,借图书册数=COUNT(*)
 FROM BORROW
 GROUP BY CNO
 HAVING COUNT(*)>5
 
-3. 查询借阅了"水浒"一书的读者，输出姓名及班级
+    3. 查询借阅了"水浒"一书的读者，输出姓名及班级
 --实现代码：
 SELECT * FROM CARD c
 WHERE EXISTS(
-    SELECT * FROM BORROW a,BOOKS b 
-    WHERE a.BNO=b.BNO
-        AND b.BNAME=N'水浒'
-        AND a.CNO=c.CNO) 
+              SELECT * FROM BORROW a,BOOKS b
+              WHERE a.BNO=b.BNO
+                AND b.BNAME=N'水浒'
+                AND a.CNO=c.CNO)
 
-4. 查询过期未还图书，输出借阅者（卡号）、书号及还书日期
+    4. 查询过期未还图书，输出借阅者（卡号）、书号及还书日期
 --实现代码：
-SELECT * FROM BORROW 
-WHERE RDATE<GETDATE() 
+SELECT * FROM BORROW
+WHERE RDATE<GETDATE()
 
-5. 查询书名包括"网络"关键词的图书，输出书号、书名、作者
+    5. 查询书名包括"网络"关键词的图书，输出书号、书名、作者
 --实现代码：
 SELECT BNO,BNAME,AUTHOR FROM BOOKS
-WHERE BNAME LIKE N'%网络%' 
+WHERE BNAME LIKE N'%网络%'
 
-6. 查询现有图书中价格最高的图书，输出书名及作者
+    6. 查询现有图书中价格最高的图书，输出书名及作者
 --实现代码：
 SELECT BNO,BNAME,AUTHOR FROM BOOKS
 WHERE PRICE=(
-    SELECT MAX(PRICE) FROM BOOKS) 
+    SELECT MAX(PRICE) FROM BOOKS)
 
-7. 查询当前借了"计算方法"但没有借"计算方法习题集"的读者，输出其借书卡号，并按卡号降序排序输出
+    7. 查询当前借了"计算方法"但没有借"计算方法习题集"的读者，输出其借书卡号，并按卡号降序排序输出
 --实现代码：
 SELECT a.CNO
 FROM BORROW a,BOOKS b
 WHERE a.BNO=b.BNO AND b.BNAME=N'计算方法'
-    AND NOT EXISTS(
+  AND NOT EXISTS(
         SELECT * FROM BORROW aa,BOOKS bb
         WHERE aa.BNO=bb.BNO
-            AND bb.BNAME=N'计算方法习题集'
-            AND aa.CNO=a.CNO)
-ORDER BY a.CNO DESC 
+          AND bb.BNAME=N'计算方法习题集'
+          AND aa.CNO=a.CNO)
+ORDER BY a.CNO DESC
 
-8. 将"C01"班同学所借图书的还期都延长一周
+    8. 将"C01"班同学所借图书的还期都延长一周
 --实现代码：
 UPDATE b SET RDATE=DATEADD(Day,7,b.RDATE)
-FROM CARD a,BORROW b
+    FROM CARD a,BORROW b
 WHERE a.CNO=b.CNO
-    AND a.CLASS=N'C01' 
+  AND a.CLASS=N'C01'
 
-9. 从BOOKS表中删除当前无人借阅的图书记录
+    9. 从BOOKS表中删除当前无人借阅的图书记录
 --实现代码：
 DELETE A FROM BOOKS a
 WHERE NOT EXISTS(
@@ -1809,39 +1814,39 @@ CREATE CLUSTERED INDEX IDX_BOOKS_BNAME ON BOOKS(BNAME)
 11. 在BORROW表上建立一个触发器，完成如下功能：如果读者借阅的书名是"数据库技术及应用"，就将该读者的借阅记录保存在BORROW_SAVE表中（注ORROW_SAVE表结构同BORROW表）
 --实现代码：
 CREATE TRIGGER TR_SAVE ON BORROW
-FOR INSERT,UPDATE
-AS
-IF @@ROWCOUNT>0
-INSERT BORROW_SAVE SELECT i.*
-FROM INSERTED i,BOOKS b
-WHERE i.BNO=b.BNO
-    AND b.BNAME=N'数据库技术及应用' 
+    FOR INSERT,UPDATE
+                   AS
+                       IF @@ROWCOUNT>0
+               INSERT BORROW_SAVE SELECT i.*
+                                  FROM INSERTED i,BOOKS b
+                                  WHERE i.BNO=b.BNO
+                                    AND b.BNAME=N'数据库技术及应用'
 
-12. 建立一个视图，显示"力01"班学生的借书信息（只要求显示姓名和书名）
+                                      12. 建立一个视图，显示"力01"班学生的借书信息（只要求显示姓名和书名）
 --实现代码：
 CREATE VIEW V_VIEW
 AS
 SELECT a.NAME,b.BNAME
 FROM BORROW ab,CARD a,BOOKS b
 WHERE ab.CNO=a.CNO
-    AND ab.BNO=b.BNO
-    AND a.CLASS=N'力01'
+  AND ab.BNO=b.BNO
+  AND a.CLASS=N'力01'
 
-13. 查询当前同时借有"计算方法"和"组合数学"两本书的读者，输出其借书卡号，并按卡号升序排序输出
+    13. 查询当前同时借有"计算方法"和"组合数学"两本书的读者，输出其借书卡号，并按卡号升序排序输出
 --实现代码：
 SELECT a.CNO
 FROM BORROW a,BOOKS b
 WHERE a.BNO=b.BNO
-    AND b.BNAME IN(N'计算方法',N'组合数学')
+  AND b.BNAME IN(N'计算方法',N'组合数学')
 GROUP BY a.CNO
 HAVING COUNT(*)=2
-ORDER BY a.CNO DESC 
+ORDER BY a.CNO DESC
 
-14. 假定在建BOOKS表时没有定义主码，写出为BOOKS表追加定义主码的语句
+    14. 假定在建BOOKS表时没有定义主码，写出为BOOKS表追加定义主码的语句
 --实现代码：
-ALTER TABLE BOOKS ADD PRIMARY KEY(BNO) 
+ALTER TABLE BOOKS ADD PRIMARY KEY(BNO)
 
-15.1 将NAME最大列宽增加到10个字符（假定原为6个字符）
+    15.1 将NAME最大列宽增加到10个字符（假定原为6个字符）
 --实现代码：
 ALTER TABLE CARD ALTER COLUMN NAME varchar(10) 
 
@@ -1872,40 +1877,40 @@ SELECT SN,SD FROM S
 WHERE [S#] IN(
     SELECT [S#] FROM C,SC
     WHERE C.[C#]=SC.[C#]
-        AND CN=N'税收基础')
+  AND CN=N'税收基础')
 
 
-2. 使用标准SQL嵌套语句查询选修课程编号为’C2’的学员姓名和所属单位
+    2. 使用标准SQL嵌套语句查询选修课程编号为’C2’的学员姓名和所属单位
 --实现代码：
 SELECT S.SN,S.SD FROM S,SC
 WHERE S.[S#]=SC.[S#]
-    AND SC.[C#]='C2'
+  AND SC.[C#]='C2'
 
-3. 使用标准SQL嵌套语句查询不选修课程编号为’C5’的学员姓名和所属单位
+    3. 使用标准SQL嵌套语句查询不选修课程编号为’C5’的学员姓名和所属单位
 --实现代码：
 SELECT SN,SD FROM S
 WHERE [S#] NOT IN(
-    SELECT [S#] FROM SC 
+    SELECT [S#] FROM SC
     WHERE [C#]='C5')
 
-4. 使用标准SQL嵌套语句查询选修全部课程的学员姓名和所属单位
+    4. 使用标准SQL嵌套语句查询选修全部课程的学员姓名和所属单位
 --实现代码：
 SELECT SN,SD FROM S
 WHERE [S#] IN(
-    SELECT [S#] FROM SC 
-        RIGHT JOIN C ON SC.[C#]=C.[C#]
+    SELECT [S#] FROM SC
+    RIGHT JOIN C ON SC.[C#]=C.[C#]
     GROUP BY [S#]
     HAVING COUNT(*)=COUNT(DISTINCT [S#]))
 
-5. 查询选修了课程的学员人数
+    5. 查询选修了课程的学员人数
 --实现代码：
 SELECT 学员人数=COUNT(DISTINCT [S#]) FROM SC
 
-6. 查询选修课程超过5门的学员学号和所属单位
+    6. 查询选修课程超过5门的学员学号和所属单位
 --实现代码：
 SELECT SN,SD FROM S
 WHERE [S#] IN(
-    SELECT [S#] FROM SC 
+    SELECT [S#] FROM SC
     GROUP BY [S#]
     HAVING COUNT(DISTINCT [C#])>5)
 ```
@@ -2581,7 +2586,20 @@ vm.max_map_count=262145 # 输出
 ./elasticsearch     # 前台启动
 ./elasticsearch -d  # 后台启动
 ```
-## Es 相关操作
+## ES 相关操作
+### 核心术语
+
+特点：近实时 NRT（near real time）
+
+ES -> 数据库、索引（index）-> 表、文档（document）-> 行（记录）、字段（fields）-> 列
+
+映射（mapping）-> 表结构定义、类型（type）-> 5.x 6.x已弃用、节点（node）-> 每一个服务器
+
+分片（shard）把索引库拆分为多份，分别放在不同的节点上，比如有3个节点，3个节点的所有数据内容加在一起是一个完整的索引库。分别保存到三个节点上水平扩展，提高吞吐量。
+
+shard = primary shard（主分片）
+
+replica = replica shard（备份节点）
 ### 查看集群状态
 http://192.168.31.xx:9200/_cluster/health
 ### 创建索引
@@ -2599,7 +2617,7 @@ PUT http://192.168.31.xx:9200/索引名
 ### 删除索引
 DELETE  http://192.168.31.xx:9200/索引名
 ### 查看索引
-- http://192.168.31.xx:9200/索引名 
+- http://192.168.31.xx:9200/索引名
 - http://192.168.31.xx:9200/_cat/indices    （查看所有）
 - http://192.168.31.xx:9200/_cat/indices?v  （显示列名）
 
@@ -2627,8 +2645,8 @@ es内置分词器不支持对中文拆分，会将中文的每一个汉字都拆
 https://github.com/medcl/elasticsearch-analysis-ik下载对应es版本的。
 
 解压 unzip elasticsearch-analysis-ik-6.4.3.zip -d /usr/local/elasticsearch-6.4.3/plugins/ik
-##### 自定义中文词库
-有些网络用语或专有名词不能被当成一个词，所以需要我们自定义。
+
+自定义中文词库：有些网络用语或专有名词不能被当成一个词，所以需要我们自定义。
 ```shell
 vim /usr/local/elasticsearch-6.4.3/plugins/ik/config/IKAnalyzer.cfg.xml
 ```
@@ -2680,9 +2698,9 @@ POST /shop/_doc/_search
 }
 // 语法格式为一个json object，内容都key-value键值对，json可以嵌套。
 ```
-**match 扩展 - operator**: 
-  * or: 搜索内容分词后，只要存在一个词语匹配就展示结果
-  * and: 搜索内容分词后，都要满足词语匹配
+**match 扩展 - operator**:
+* or: 搜索内容分词后，只要存在一个词语匹配就展示结果
+* and: 搜索内容分词后，都要满足词语匹配
 
 ```json5
 {
@@ -2721,7 +2739,7 @@ eg: 当前属性设置为80，若一个查询分词后有8个，那么匹配度�
   }
 }
 ```
-##### DSL搜索 - from size 分页
+##### DSL搜索 - 分页
 ```json5
 {
   "query": {
@@ -2732,6 +2750,25 @@ eg: 当前属性设置为80，若一个查询分词后有8个，那么匹配度�
   "size": 10
 }
 ```
+##### DSL搜索 - 深度分页
+深度分页其实就是搜索的深浅度，比如第1页、第2页、第20页是比较浅的，而第10000页、第20000页就是很深了。
+
+在获取第9999条到10009条数据的时候，其实每个分片都会拿到10009条数据，总共是10009*3=30027条数据，然后针对30027数据再次做排序获取最后10条数据。
+
+如此一来，搜索得太深，就会造成性能问题，会耗费内存和占用cpu。而且es为了性能，它不支持超过一万条数据以上的分页查询。那么在实际应用中，如何解决深度分页带来的问题？
+
+1. 限制分页页数：比如最多只能提供100页的展示（淘宝就是这么做的，搜索限制分页最多100页），从第101页开始就没了，毕竟用户也不会搜的那么深，平时搜索淘宝估计也就看个10来页。
+2. 提升搜索量：通过设置 index.max_result_window 来突破10000数据（"changing the [index.max_result_window] index level setting"）
+
+```json5
+// GET /shop/_settings
+// PUT /shop/_settings
+
+{
+  "index.max_result_window": "20000"
+}
+```
+
 ##### DSL搜索 - term 精准搜索
 搜索的时候会把用户搜索内容，比如“慕课网强大”作为一整个关键词去搜索，而不会对其进行分词后再搜索
 ```json5
@@ -2761,7 +2798,7 @@ _注意⚠️：match会对慕课网先进行分词（其实就是全文检索�
   "query": {
     "match_phrase": {
       "desc": {
-        "query": "大学 毕业 研究生", 
+        "query": "大学 毕业 研究生",
         "slop": 2 // slop：允许词语间跳过的数量
       }
     }
@@ -2831,12 +2868,12 @@ _注意⚠️：match分词后搜索只要有匹配就返回，match_phrase分�
   }
 }
 ```
-
 ##### DSL搜索 - 布尔查询
 可以组合多重查询
 * must：查询必须匹配搜索条件，譬如 and
 * should：查询匹配满足1个以上条件，譬如 or
 * must_not：不匹配搜索条件，一个都不要满足
+
 ```json5
 // 单个
 {
@@ -2982,8 +3019,7 @@ es的排序同sql，可以desc也可以asc，也支持组合排序。
   ]
 }
 ```
-###### 对文本排序
-由于文本会被分词，所以往往要去做排序会报错，通常我们可以为这个字段增加额外的一个附属属性，类型为keyword，用于做排序。
+对文本排序：由于文本会被分词，所以往往要去做排序会报错，通常我们可以为这个字段增加额外的一个附属属性，类型为keyword，用于做排序。
 
 创建新的索引 POST /es_sort/_mapping
 ```json5
@@ -3075,8 +3111,38 @@ POST  /es_sort/_doc
     }
   }
 }
-// 详细 https://www.elastic.co/guide/cn/elasticsearch/guide/current/fuzzy-match-query.html
+// 官方文档：https://www.elastic.co/guide/cn/elasticsearch/guide/current/fuzzy-match-query.html
 ```
 ##### DSL扩展 - wildcard 占位符查询
 
-详见 https://www.elastic.co/guide/en/elasticsearch/reference/2.3/query-dsl-wildcard-query.html
+官方文档：https://www.elastic.co/guide/en/elasticsearch/reference/2.3/query-dsl-wildcard-query.html
+
+##### DSL扩展 - scroll 滚动搜索
+
+一次性查询1万+数据，往往会造成性能影响，因为数据量太多了，这个时候可以使用滚动搜索，也就是scroll。
+
+滚动搜索可以先查询出一些数据，然后再紧接着依次往下查询。在第一次查询的时候会有一个滚动id，相当于一个锚标记，随后再次滚动搜索会需要上一次搜索，根据这个进行下一次的搜索请求。
+
+每次搜索都是基于一个历史的数据快照，查询数据的期间，如果有数据变更，那么和搜索是没有关系的，搜索的内容还是快
+
+scroll=1m，相当于是一个 session 会话时间，搜索保持的上下文时间为1分钟。
+```json5
+// GET /shop/_search?scroll=1m 
+{
+  "query": {
+    "match_all": {}
+  },
+  "sort": ["_doc"],
+  "size": 1000
+}
+
+// GET /_search/scroll
+{
+  "scroll": "1m",
+  "scroll_id" : "上面查询出的id"
+}
+// 官方文档：https://www.elastic.co/guide/cn/elasticsearch/guide/current/scroll.html
+```
+##### DSL扩展 - 批量操作 bulk
+
+官方地址：https://www.elastic.co/guide/cn/elasticsearch/guide/current/bulk.html
